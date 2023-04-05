@@ -4,20 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 import java.util.regex.Pattern;
-
-import static java.lang.Math.min;
-import static java.util.Collections.max;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "employee")
-public class Employee extends Person{
+@Table(name = "StreamLead")
+public class StreamLead extends Person{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +20,10 @@ public class Employee extends Person{
     private String email;
 
 
-    public Employee() {
+    public StreamLead() {
     }
 
-    public Employee(String name, String surname,String email) {
+    public StreamLead(String name, String surname,String email) {
         super(name, surname);
         this.email = email;
     }

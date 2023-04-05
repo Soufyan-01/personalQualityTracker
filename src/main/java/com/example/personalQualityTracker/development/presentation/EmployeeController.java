@@ -25,7 +25,7 @@ public class EmployeeController {
 
     @PostMapping("/addEmployee")
     public Employee newEmployee(@RequestBody EmployeeDTO employeeDTO) throws IOException {
-        return employeeService.createNewEmployee(employeeDTO.name, employeeDTO.email);
+        return employeeService.createNewEmployee(employeeDTO.name, employeeDTO.surname, employeeDTO.email);
     }
 
     @GetMapping("/employee/{id}")

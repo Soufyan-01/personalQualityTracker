@@ -3,6 +3,8 @@ package com.example.personalQualityTracker.development.application;
 import com.example.personalQualityTracker.development.data.SpringEmployeeRepository;
 import com.example.personalQualityTracker.development.domain.Employee;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import com.example.personalQualityTracker.security.application.UserService;
+import com.example.personalQualityTracker.security.data.User;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -15,15 +17,24 @@ public class EmployeeService {
 
     private final SpringEmployeeRepository springEmployeeRepository;
 
+    private final UserService userService;
 
-    public EmployeeService(SpringEmployeeRepository springEmployeeRepository) {
+    public EmployeeService(SpringEmployeeRepository springEmployeeRepository, UserService userService) {
         this.springEmployeeRepository = springEmployeeRepository;
+        this.userService = userService;
     }
 
-    public Employee createNewEmployee(String name, String email) throws IOException {
-        Employee employee = new Employee(name, email);
+    public Employee createNewEmployee(String name, String surname, String email) throws IOException {
+        Employee employee = new Employee(name, surname, email);
 
         if (employee.isValid(email)) {
+
+            User user = userService.loadUserByUsername(email);
+
+            if(user.getPerson() != null) {
+                throw new IllegalArgumentException("This user already exists!");
+            }
+            user.setPerson(employee);
 
             return springEmployeeRepository.save(employee);
         } else {

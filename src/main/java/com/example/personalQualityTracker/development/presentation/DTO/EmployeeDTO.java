@@ -5,4 +5,6 @@ public class EmployeeDTO {
     public String image;
     public String name;
     public String email;
+
+    public String surname;
 }
