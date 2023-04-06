@@ -51,7 +51,7 @@ public class User implements UserDetails {
     }
 
     public void setEmployee(Employee employee) {
-        if(positions != positions.EMPLOYEE)
+        if(positions != Positions.EMPLOYEE)
             throw new RuntimeException();
         this.person = employee;
     }

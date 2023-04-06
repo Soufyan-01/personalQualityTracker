@@ -2,6 +2,8 @@ import {createRouter, createWebHashHistory } from 'vue-router'
 
 import HelloWorld  from "@/components/HelloWorld.vue";
 import AuthenticationComponent from "@/components/authentication/AuthenticationComponent.vue";
+import LoginComponent from "@/components/authentication/LoginComponent.vue";
+import AllUsers from "@/components/streamLead/allUsers.vue";
 
 export default createRouter({
     history: createWebHashHistory(),
@@ -12,9 +14,19 @@ export default createRouter({
             component: HelloWorld
         },
         {
+            path: '/myAccount/auth/register',
+            name: 'Register',
+            component: AuthenticationComponent
+        },
+        {
             path: '/myAccount/auth/login',
             name: 'Login',
-            component: AuthenticationComponent
+            component: LoginComponent
+        },
+        {
+            path: '/capgemini/allUsers',
+            name: 'AllUsers',
+            component: AllUsers
         }
     ],
 

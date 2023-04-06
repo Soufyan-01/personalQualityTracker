@@ -1,52 +1,81 @@
 <template>
+  <div id="im">
+    <img id="BackgroundImage" :src="require('../assets/CapLogo.png')" alt="capfoto">
 
-  <div id="registerWord">
-  <H1 class="registerWord">To use the Personal Quality Tracker app, you need to login or create a account</H1>
-  </div>
+    <div id="divSignInForm">
+      <img id="layoutIMG" :src="require('../assets/CapSmallLogo.png')" alt="capfoto">
 
-  <div id="divSignInForm">
-  <v-sheet width="300" class="mx-auto">
-    <v-form fast-fail @submit.prevent>
-      <v-text-field
-          v-model="form.username"
-          label="Email"
-          :rules="firstNameRules"
-          name="username" id="username" placeholder="Enter your capgemini email" @input="form.username = form.username.toLowerCase()"
-      ></v-text-field>
+      <v-responsive
+          class="mx-auto"
+          max-width="344">
+        <v-text-field
+            v-model="form.username"
+            label="Email"
+            color="rgb(12,150,203)"
+            :rules="firstNameRules"
+            name="username" id="username" placeholder="Enter your capgemini email"
+            @input="form.username = form.username.toLowerCase()"
+        ></v-text-field>
 
-      <v-text-field
-          v-model="form.password"
-          label="Password"
-          :rules="lastNameRules"
-          type="password" name="password" id="pass-word" placeholder="Enter your password"
-      ></v-text-field>
+        <v-text-field
+            v-model="form.password"
+            label="Password"
+            :rules="lastNameRules"
+            color="rgb(12,150,203)"
+            type="password" name="password" id="pass-word" placeholder="Enter your password"
+        ></v-text-field>
 
-      <v-select
-          v-model="form.positions"
-          :items="['STREAM_LEAD', 'EMPLOYEE']"
-          :rules="[v => !!v || 'Item is required']"
-          label="Functions"
-          required
-      >
-        <template #prepend-item>
-          <v-list-item disabled>Select your function</v-list-item>
-        </template>
-      </v-select>
+        <v-select
+            v-model="form.positions"
+            :items="['STREAM_LEAD', 'EMPLOYEE']"
+            :rules="[v => !!v || 'Item is required']"
+            label="Functions"
+            color="rgb(12,150,203)"
+            required
+        >
+          <template #prepend-item>
+            <v-list-item disabled>Select your function</v-list-item>
+          </template>
+        </v-select>
 
-      <v-btn type="submit" id="registreer" block class="mt-2" @click="registerUser">Submit</v-btn>
-    </v-form>
-  </v-sheet>
+        <v-btn
+            :disabled="!form"
+            :loading="loading"
+            block
+            color="info"
+            class="text-none mb-4"
+            size="medium"
+            variant="elevated"
+            type="submit" id="login" v-if="isLoginForm" :to="{ path: '/myAccount/auth/login' }"
+        >
+          Login
+        </v-btn>
+
+        <v-btn
+            :disabled="!form"
+            :loading="loading"
+            block
+            class="text-none mb-4"
+            color="success"
+            size="large"
+            variant="flat"
+            type="submit" id="registreer" @click="registerUser"
+        >
+          Register
+        </v-btn>
+
+      </v-responsive>
+    </div>
   </div>
 </template>
 
 <script>
 import AuthenticationService from "@/services/authentication/AuthenticationService";
-// import axios from "axios";
 
 export default {
   name: "AuthenticationComponent",
-  data(){
-    return{
+  data() {
+    return {
       form: {
         username: "",
         password: "",
@@ -65,20 +94,21 @@ export default {
         positions: this.form.positions
       };
 
-
-        AuthenticationService.registerUser(data)
-            .then((response) => {
-              this.id = response.data;
-              window.location.reload();
-            }).then((res) => {
-          console.log(res)
-          localStorage.setItem("form", res.headers.form);
-          this.isLoginForm = true;
-        }).catch((err) => {
-          if (err.response.status === 400) {
-            alert("Please fill in all the fields!")
-          }
-        });
+      AuthenticationService.registerUser(data)
+          .then((response) => {
+            this.id = response.data;
+            window.location.reload();
+          }).then((res) => {
+        console.log(res)
+        localStorage.setItem("form", res.headers.form);
+        this.isLoginForm = true;
+      }).catch((err) => {
+        if (err.response.status === 403 || err.response.status === 400) {
+          alert("Please fill in all the fields!")
+        } else {
+          alert("Your email or password is incorrect or you are not registered yet.")
+        }
+      });
     }
   }
 }
@@ -86,25 +116,23 @@ export default {
 
 <style scoped>
 
-  #divSignInForm {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+#layoutIMG {
+  width: 5%;
+  height: 10%;
+  margin: 0;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 
-  .registerWord {
-    text-align: center;
-    font-size: 20px;
-    top: -50px;
-    font-weight: bold;
-    color: rgb(33,33,33)
-  }
+#BackgroundImage {
+  width: 20%;
+  height: 60%;
+  margin-left: 80%;
+  opacity: 0.7;
+}
 
-  #registerWord {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+
 </style>
