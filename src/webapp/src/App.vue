@@ -23,7 +23,7 @@
         <v-list>
           <v-list-item class="d-flex justify-center" title="Home" :to="{ path: '/' }"></v-list-item>
 
-          <v-list-item class="d-flex justify-center" v-if="(isLoggedIn && isStreamLead)" title="AllUsers" value="AllUsers" :to="{ path: '/capgemini/allUsers' }"></v-list-item>
+          <v-list-item class="d-flex justify-center" v-if="(isLoggedIn && isStreamLead)" title="Users" value="AllUsers" :to="{ path: '/capgemini/allUsers' }"></v-list-item>
 
           <v-list-item class="d-flex justify-center" title="Login" value="Login" :to="{ path: '/myAccount/auth/login' }"></v-list-item>
 
@@ -72,7 +72,7 @@ export default {
       localStorage.removeItem("auth");
       localStorage.removeItem("roles");
       localStorage.removeItem("email");
-      localStorage.removeItem("employeeId")
+      localStorage.removeItem("id");
       this.$router.push("/")
       window.location.reload();
     },

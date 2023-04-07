@@ -3,6 +3,7 @@ import axios from 'axios';
 const REGISTER_USER = `http://localhost:8081/register`
 const Login_USER = `http://localhost:8081/login`
 const COMPLETE_USER_ACCOUNT = `http://localhost:8081/api/employee/addEmployee`
+const GET_EMPLOYEE_ID = `http://localhost:8081/api/employee/employeeId/`
 
 class AuthenticationService {
 
@@ -16,6 +17,10 @@ class AuthenticationService {
 
     completeUserAccount(data){
         return axios.post(COMPLETE_USER_ACCOUNT, data, {headers: {Authorization: 'Bearer ' + localStorage.getItem("auth")}})
+    }
+
+    getEmployeeId(email) {
+        return axios.get(GET_EMPLOYEE_ID + email, {headers: {Authorization: 'Bearer ' + localStorage.getItem("auth")}});
     }
 
 }

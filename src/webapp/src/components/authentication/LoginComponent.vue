@@ -51,6 +51,7 @@
 
 <script>
 import axios from "axios";
+import AuthenticationService from "@/services/authentication/AuthenticationService";
 
 export default {
   name: "LoginComponent",
@@ -82,6 +83,13 @@ export default {
             localStorage.setItem("auth", tokenRole[0]);
             localStorage.setItem("roles", tokenRole[1]);
 
+            AuthenticationService.getEmployeeId(localStorage.getItem('email'))
+                .then(response => {
+                  localStorage.setItem("id", response.data.id);
+                  window.location.href = "/";
+                });
+
+
             // EmployeeService.getEmployeeAssignments(localStorage.getItem('email'))
             //     .then(response => {
             //       localStorage.setItem("employeeId", response.data.id)
@@ -93,7 +101,7 @@ export default {
             //   window.location.href = "/Home";
             // }
 
-            window.location.href = "/";
+            // window.location.href = "/";
 
           })
           .catch((err) => {

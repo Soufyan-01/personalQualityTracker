@@ -5,6 +5,7 @@ import com.example.personalQualityTracker.development.domain.Employee;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.example.personalQualityTracker.security.application.UserService;
 import com.example.personalQualityTracker.security.data.User;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -53,10 +54,10 @@ public class EmployeeService {
         return springEmployeeRepository.findById(id).get();
     }
 
-//    public Employee getEmployeeAssignments(String email) {
-//        return springEmployeeRepository.findByEmail(email)
-//                .orElseThrow(() -> new UsernameNotFoundException(email));
-//    }
+    public Employee getEmployeeIdByEmail(String email) {
+        return springEmployeeRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException(email));
+    }
 
     public void deleteEmployee(Long id) {
         springEmployeeRepository.deleteById(id);

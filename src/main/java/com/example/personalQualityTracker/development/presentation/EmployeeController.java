@@ -28,6 +28,12 @@ public class EmployeeController {
         return employeeService.createNewEmployee(employeeDTO.name, employeeDTO.surname, employeeDTO.email);
     }
 
+    @GetMapping("/employeeId/{id}")
+    public Employee getEmployeeIdByEmail(@PathVariable("id") String email) {
+        return employeeService.getEmployeeIdByEmail(email);
+    }
+
+
     @GetMapping("/employee/{id}")
     public Employee getAssignmentById(@PathVariable("id") Long id) {
         return employeeService.getEmployeeById(id);
