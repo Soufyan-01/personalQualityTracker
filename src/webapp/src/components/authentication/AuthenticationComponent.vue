@@ -29,7 +29,7 @@
             v-model="form.positions"
             :items="['STREAM_LEAD', 'EMPLOYEE']"
             :rules="[v => !!v || 'Item is required']"
-            label="Functions"
+            label="Function"
             color="rgb(12,150,203)"
             required
         >
@@ -66,7 +66,115 @@
 
       </v-responsive>
     </div>
+
+
   </div>
+  <v-row justify="center">
+    <v-dialog
+        v-model="dialog"
+        persistent
+        width="1024"
+    >
+      <template v-slot:activator="{ props }">
+
+      </template>
+      <v-card>
+        <v-card-title>
+          <span class="text-h5">My user Profile</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+              >
+                <v-text-field
+                    v-model="formTwo.name"
+                    label="Legal first name*"
+                    color="rgb(12,150,203)"
+                    :rules="firstNameRules"
+                    name="name" id="name" placeholder="Enter your name"
+                ></v-text-field>
+              </v-col>
+              <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+              >
+                <v-text-field
+                    label="Legal middle name"
+                    hint="example of helper text only on focus"
+                ></v-text-field>
+              </v-col>
+              <v-col
+                  cols="12"
+                  sm="6"
+                  md="4"
+              >
+                <v-text-field
+                    v-model="formTwo.surname"
+                    label="Legal last name*"
+                    :rules="lastNameRules"
+                    color="rgb(12,150,203)"
+                    type="surname" name="surname" id="surname" placeholder="surname"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                    v-model="formTwo.email"
+                    label="Email*"
+                    :rules="lastNameRules"
+                    color="rgb(12,150,203)"
+                    type="email" name="email" id="email" placeholder="Make sure you enter your capgemini email"
+                ></v-text-field>
+              </v-col>
+<!--              <v-col-->
+<!--                  cols="12"-->
+<!--                  sm="6"-->
+<!--              >-->
+<!--                <v-select-->
+<!--                    :items="['0-17', '18-29', '30-54', '54+']"-->
+<!--                    label="Age*"-->
+<!--                    required-->
+<!--                ></v-select>-->
+<!--              </v-col>-->
+<!--              <v-col-->
+<!--                  cols="12"-->
+<!--                  sm="6"-->
+<!--              >-->
+<!--                <v-autocomplete-->
+<!--                    :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"-->
+<!--                    label="Interests"-->
+<!--                    multiple-->
+<!--                ></v-autocomplete>-->
+<!--              </v-col>-->
+            </v-row>
+          </v-container>
+          <small>*indicates required field</small>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+              color="blue-darken-1"
+              variant="text"
+              @click="dialog = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+              color="blue-darken-1"
+              variant="text"
+              id="completeAccount"
+              @click="completeAccount"
+          >
+            Complete account
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-row>
 </template>
 
 <script>
@@ -81,11 +189,18 @@ export default {
         password: "",
         positions: ""
       },
+      formTwo: {
+        name: "",
+        surname: "",
+        email: ""
+      },
       isLoginForm: true,
       errorMsg: '',
+      dialog: false
     }
   },
   methods: {
+
     registerUser() {
       const data = {
         id: null,
@@ -97,7 +212,8 @@ export default {
       AuthenticationService.registerUser(data)
           .then((response) => {
             this.id = response.data;
-            window.location.reload();
+            localStorage.setItem("email", this.form.username);
+            this.dialog = true;
           }).then((res) => {
         console.log(res)
         localStorage.setItem("form", res.headers.form);
@@ -109,6 +225,29 @@ export default {
           alert("Your email or password is incorrect or you are not registered yet.")
         }
       });
+    },
+    completeAccount(){
+      const data = {
+        id: null,
+        name: this.formTwo.name,
+        surname: this.formTwo.surname,
+        email: this.formTwo.email
+      };
+      AuthenticationService.completeUserAccount(data)
+          .then((response) => {
+            this.id = response.data;
+            console.log(response.data.email);
+            window.location.reload();
+          }).then((res) => {
+            console.log(res)
+            this.isLoginForm = true;
+          }).catch(() => {
+            if(localStorage.getItem("email") === data.email){
+              alert("Your account is already completed!")
+            } else {
+              alert("Please make sure u enter your capgemini email!")
+            }
+      })
     }
   }
 }

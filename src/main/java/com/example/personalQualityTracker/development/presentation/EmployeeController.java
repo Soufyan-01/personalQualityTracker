@@ -39,7 +39,7 @@ public class EmployeeController {
         employeeService.deleteEmployee(id);
     }
 
-    @GetMapping("/employee")
+    @GetMapping("/employees")
     public List<Employee> employees() {
         return employeeService.getAllEmployees();
     }

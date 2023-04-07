@@ -25,7 +25,7 @@ export default createRouter({
         },
         {
             path: '/capgemini/allUsers',
-            name: 'AllUsers',
+            name: 'Users',
             component: AllUsers
         }
     ],
