@@ -1,4 +1,4 @@
-package com.example.personalQualityTracker.development;
+package com.example.personalQualityTracker;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
