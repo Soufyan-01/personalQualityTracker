@@ -23,12 +23,12 @@ public class Person {
     private String surname;
 
     @Column
-    private Function funtion;
+    private Function function;
 
-    public Person(String name, String surname, Function funtion) {
+    public Person(String name, String surname, Function function) {
         this.name = name;
         this.surname = surname;
-        this.funtion = funtion;
+        this.function = function;
     }
 
     public Person() {

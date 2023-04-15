@@ -33,9 +33,9 @@ public class EmployeeService {
         if (employee.isValid(email)) {
 
             if (userService.loadUserByUsername(email).getPositions() == Positions.STREAM_LEAD){
-                employee.setFuntion(Function.STREAM_LEAD);
+                employee.setFunction(Function.STREAM_LEAD);
             } else {
-                employee.setFuntion(Function.EMPLOYEE);
+                employee.setFunction(Function.EMPLOYEE);
             }
 
             User user = userService.loadUserByUsername(email);
