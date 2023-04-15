@@ -3,6 +3,7 @@ package com.example.personalQualityTracker.development.presentation;
 import com.example.personalQualityTracker.development.application.EmployeeService;
 import com.example.personalQualityTracker.development.data.SpringEmployeeRepository;
 import com.example.personalQualityTracker.development.domain.Employee;
+import com.example.personalQualityTracker.development.domain.Person;
 import com.example.personalQualityTracker.development.presentation.DTO.EmployeeDTO;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +25,8 @@ public class EmployeeController {
     }
 
     @PostMapping("/addEmployee")
-    public Employee newEmployee(@RequestBody EmployeeDTO employeeDTO) throws IOException {
-        return employeeService.createNewEmployee(employeeDTO.name, employeeDTO.surname, employeeDTO.email);
+    public Person newEmployee(@RequestBody EmployeeDTO employeeDTO) throws IOException {
+        return employeeService.createNewEmployee(employeeDTO.name, employeeDTO.surname, employeeDTO.email, employeeDTO.function);
     }
 
     @GetMapping("/employeeId/{id}")

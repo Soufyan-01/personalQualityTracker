@@ -1,5 +1,6 @@
 package com.example.personalQualityTracker.development.domain;
 
+import com.example.personalQualityTracker.development.domain.Enum.Function;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,10 +31,11 @@ public class Employee extends Person{
     public Employee() {
     }
 
-    public Employee(String name, String surname,String email) {
-        super(name, surname);
+    public Employee(String name, String surname,String email, Function function) {
+        super(name, surname, function);
         this.email = email;
     }
+
 
     public boolean isValid(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";

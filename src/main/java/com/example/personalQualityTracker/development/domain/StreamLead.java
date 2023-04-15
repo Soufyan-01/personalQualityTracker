@@ -1,5 +1,6 @@
 package com.example.personalQualityTracker.development.domain;
 
+import com.example.personalQualityTracker.development.domain.Enum.Function;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,8 +23,8 @@ public class StreamLead extends Person{
     public StreamLead() {
     }
 
-    public StreamLead(String name, String surname,String email) {
-        super(name, surname);
+    public StreamLead(String name, String surname,String email, Function function) {
+        super(name, surname, function);
         this.email = email;
     }
 

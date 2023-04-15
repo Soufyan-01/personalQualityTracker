@@ -75,9 +75,9 @@
         persistent
         width="1024"
     >
-      <template v-slot:activator="{ props }">
+<!--      <template v-slot:activator="{ props }">-->
 
-      </template>
+<!--      </template>-->
       <v-card>
         <v-card-title>
           <span class="text-h5">My user Profile</span>

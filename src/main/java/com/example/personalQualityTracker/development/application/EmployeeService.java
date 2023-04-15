@@ -3,7 +3,9 @@ package com.example.personalQualityTracker.development.application;
 import com.example.personalQualityTracker.development.data.SpringEmployeeRepository;
 import com.example.personalQualityTracker.development.domain.Employee;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import com.example.personalQualityTracker.development.domain.Enum.Function;
 import com.example.personalQualityTracker.security.application.UserService;
+import com.example.personalQualityTracker.security.data.Positions;
 import com.example.personalQualityTracker.security.data.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -25,10 +27,16 @@ public class EmployeeService {
         this.userService = userService;
     }
 
-    public Employee createNewEmployee(String name, String surname, String email) throws IOException {
-        Employee employee = new Employee(name, surname, email);
+    public Employee createNewEmployee(String name, String surname, String email, Function function) throws IOException {
+        Employee employee = new Employee(name, surname, email, function);
 
         if (employee.isValid(email)) {
+
+            if (userService.loadUserByUsername(email).getPositions() == Positions.STREAM_LEAD){
+                employee.setFuntion(Function.STREAM_LEAD);
+            } else {
+                employee.setFuntion(Function.EMPLOYEE);
+            }
 
             User user = userService.loadUserByUsername(email);
 
