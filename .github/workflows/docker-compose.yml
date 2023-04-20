@@ -11,5 +11,5 @@ services:
     volumes:
       - data:/var/lib/postgresql
   myapp:
-    image: 433ee626fb782f793162abeda4ab312b0d48109e63c79153c98475f96bd26f6e
+    image: 3b6645d2c145df0062b13b5f4db33b428f7249d7139949e3c4a1fbc81b4d6de9
 
