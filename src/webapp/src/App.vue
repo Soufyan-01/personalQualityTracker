@@ -25,7 +25,9 @@
 
           <v-list-item class="d-flex justify-center" v-if="(isLoggedIn && isStreamLead)" title="Users" value="AllUsers" :to="{ path: '/capgemini/allUsers' }"></v-list-item>
 
-          <v-list-item class="d-flex justify-center" title="Login" value="Login" :to="{ path: '/myAccount/auth/login' }"></v-list-item>
+          <v-list-item class="d-flex justify-center" v-if="isLoggedOut" title="Login" value="Login" :to="{ path: '/myAccount/auth/login' }"></v-list-item>
+
+          <v-list-item class="d-flex justify-center" v-if="isLoggedIn" title="Assessment" :to="{ path: '/capgemini/assessment' }"></v-list-item>
 
           <v-list-item class="d-flex justify-center" v-if="isLoggedIn" @click="logOut" title="Logout" :to="{ path: '/' }"></v-list-item>
 
@@ -50,6 +52,11 @@ export default {
     isLoggedIn() {
       let auth = localStorage.getItem("auth");
       return auth != null;
+    },
+
+    isLoggedOut() {
+      let auth = localStorage.getItem("auth");
+      return auth == null;
     },
 
     isStreamLead() {
