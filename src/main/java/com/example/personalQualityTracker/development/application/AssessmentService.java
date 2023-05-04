@@ -48,6 +48,11 @@ public class AssessmentService {
         return springAssessmentRepository.findAssessmentByPersonId(id).get();
     }
 
+    public boolean checkIfAssessmentIsMade(Long id){
+        Optional<Assessment> assessmentOptional = springAssessmentRepository.findAssessmentByPersonId(id);
+        return assessmentOptional.isPresent();
+    }
+
 
     public Assessment getPersonality(Long id){
         Assessment assessment = getAssessmentById(id);

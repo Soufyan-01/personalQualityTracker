@@ -1,10 +1,12 @@
 package com.example.personalQualityTracker.development.presentation;
 
 import com.example.personalQualityTracker.development.application.EmployeeService;
+import com.example.personalQualityTracker.development.application.StreamLeadService;
 import com.example.personalQualityTracker.development.data.SpringEmployeeRepository;
 import com.example.personalQualityTracker.development.domain.Employee;
-import com.example.personalQualityTracker.development.domain.Person;
+import com.example.personalQualityTracker.development.domain.StreamLead;
 import com.example.personalQualityTracker.development.presentation.DTO.EmployeeDTO;
+import com.example.personalQualityTracker.development.presentation.DTO.StreamLeadDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -17,16 +19,29 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
+    private final StreamLeadService streamLeadService;
+
     private final SpringEmployeeRepository springEmployeeRepository;
 
-    public EmployeeController(EmployeeService employeeService, SpringEmployeeRepository springEmployeeRepository) {
+    public EmployeeController( StreamLeadService streamLeadService, EmployeeService employeeService, SpringEmployeeRepository springEmployeeRepository) {
+        this.streamLeadService = streamLeadService;
         this.employeeService = employeeService;
         this.springEmployeeRepository = springEmployeeRepository;
     }
 
     @PostMapping("/addEmployee")
-    public Person newEmployee(@RequestBody EmployeeDTO employeeDTO) throws IOException {
-        return employeeService.createNewEmployee(employeeDTO.name, employeeDTO.surname, employeeDTO.email, employeeDTO.function);
+    public void newEmployee(@RequestBody EmployeeDTO employeeDTO) throws IOException {
+        employeeService.createNewEmployee(employeeDTO.name, employeeDTO.surname, employeeDTO.email, employeeDTO.function);
+    }
+
+    @PostMapping("/addStreamLead")
+    public void newStreamLead(@RequestBody StreamLeadDTO employeeDTO) throws IOException {
+        streamLeadService.createStreamLead(employeeDTO.name, employeeDTO.surname, employeeDTO.email, employeeDTO.function);
+    }
+
+    @GetMapping("/streamLead/{id}")
+    public StreamLead getStreamLeadIdByEmail(@PathVariable("id") String email) {
+        return streamLeadService.getStreamLeadIdByEmail(email);
     }
 
     @GetMapping("/employeeId/{id}")

@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.regex.Pattern;
 
 import static java.lang.Math.min;
@@ -14,9 +16,10 @@ import static java.util.Collections.max;
 @Setter
 @Entity
 @Table(name = "employee")
-public class Employee extends Person{
+public class Employee extends Person implements Serializable {
 
     @Id
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

@@ -28,6 +28,10 @@ public class AssessmentController {
         return assessmentService.getAssessmentById(personId);
     }
 
+    @GetMapping("/doesExists/{personId}")
+    public boolean checkIfAssessmentIsMade(@PathVariable Long personId){
+        return assessmentService.checkIfAssessmentIsMade(personId);
+    }
     @PostMapping("/percentages/{personId}")
     public Assessment getPersonality(@PathVariable Long personId){
         return assessmentService.getPersonality(personId);

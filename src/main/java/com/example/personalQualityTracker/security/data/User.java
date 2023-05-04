@@ -3,6 +3,7 @@ package com.example.personalQualityTracker.security.data;
 
 import com.example.personalQualityTracker.development.domain.Employee;
 import com.example.personalQualityTracker.development.domain.Person;
+import com.example.personalQualityTracker.development.domain.StreamLead;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -56,11 +57,11 @@ public class User implements UserDetails {
         this.person = employee;
     }
 
-//    public void setStreamLead(StreamLead streamLead) {
-//        if(positions != positions.EMPLOYEE)
-//            throw new RuntimeException();
-//        this.person = streamLead;
-//    }
+    public void setStreamLead(StreamLead streamLead) {
+        if(positions != Positions.STREAM_LEAD)
+            throw new RuntimeException();
+        this.person = streamLead;
+    }
     public Long getId() {
         return id;
     }

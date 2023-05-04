@@ -1,9 +1,11 @@
 package com.example.personalQualityTracker.development.application;
 
 import com.example.personalQualityTracker.development.data.SpringEmployeeRepository;
+import com.example.personalQualityTracker.development.data.SpringStreamLeadRepository;
 import com.example.personalQualityTracker.development.domain.Employee;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.example.personalQualityTracker.development.domain.Enum.Function;
+import com.example.personalQualityTracker.development.domain.StreamLead;
 import com.example.personalQualityTracker.security.application.UserService;
 import com.example.personalQualityTracker.security.data.Positions;
 import com.example.personalQualityTracker.security.data.User;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 @Transactional
@@ -22,32 +25,29 @@ public class EmployeeService {
 
     private final UserService userService;
 
-    public EmployeeService(SpringEmployeeRepository springEmployeeRepository, UserService userService) {
+    private final SpringStreamLeadRepository springStreamLeadRepository;
+
+    public EmployeeService(SpringEmployeeRepository springEmployeeRepository, UserService userService, SpringStreamLeadRepository springStreamLeadRepository) {
         this.springEmployeeRepository = springEmployeeRepository;
         this.userService = userService;
+        this.springStreamLeadRepository = springStreamLeadRepository;
     }
 
-    public Employee createNewEmployee(String name, String surname, String email, Function function) throws IOException {
+    public void createNewEmployee(String name, String surname, String email, Function function) throws IOException {
         Employee employee = new Employee(name, surname, email, function);
+
+        User user = userService.loadUserByUsername(email);
+
 
         if (employee.isValid(email)) {
 
-            if (userService.loadUserByUsername(email).getPositions() == Positions.STREAM_LEAD){
-                employee.setFunction(Function.STREAM_LEAD);
-            } else {
-                employee.setFunction(Function.EMPLOYEE);
-            }
+                if(user.getPerson() != null) {
+                    throw new IllegalArgumentException("This user already exists!");
+                }
+                user.setEmployee(employee);
+                user.setPerson(employee);
 
-            User user = userService.loadUserByUsername(email);
-
-            if(user.getPerson() != null) {
-                throw new IllegalArgumentException("This user already exists!");
-            }
-            user.setPerson(employee);
-
-            return springEmployeeRepository.save(employee);
-        } else {
-            throw new IllegalArgumentException();
+            springEmployeeRepository.save(employee);
         }
     }
 
