@@ -4,6 +4,8 @@ const REGISTER_USER = `http://localhost:8081/register`
 const Login_USER = `http://localhost:8081/login`
 const COMPLETE_USER_ACCOUNT = `http://localhost:8081/api/employee/addEmployee`
 const GET_EMPLOYEE_ID = `http://localhost:8081/api/employee/employeeId/`
+const GET_STREAMLEAD_ID = `http://localhost:8081/api/employee/streamLead/`
+
 
 class AuthenticationService {
 
@@ -21,6 +23,10 @@ class AuthenticationService {
 
     getEmployeeId(email) {
         return axios.get(GET_EMPLOYEE_ID + email, {headers: {Authorization: 'Bearer ' + localStorage.getItem("auth")}});
+    }
+
+    getStreamLeadId(email) {
+        return axios.get(GET_STREAMLEAD_ID + email, {headers: {Authorization: 'Bearer ' + localStorage.getItem("auth")}});
     }
 
 }

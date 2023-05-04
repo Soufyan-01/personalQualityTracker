@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const GET_ALL_USERS = `http://localhost:8081/employees`;
+const GET_ALL_USERS = `http://localhost:8081/api/employee/employees`;
 
 class UserService {
   getAllUsers() {

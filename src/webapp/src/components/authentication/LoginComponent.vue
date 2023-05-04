@@ -52,7 +52,7 @@
 <script>
 import axios from "axios";
 import AuthenticationService from "@/services/authentication/AuthenticationService";
-
+import AssessmentService from "@/services/assessment/AssessmentService";
 export default {
   name: "LoginComponent",
   data() {
@@ -83,25 +83,27 @@ export default {
             localStorage.setItem("auth", tokenRole[0]);
             localStorage.setItem("roles", tokenRole[1]);
 
-            AuthenticationService.getEmployeeId(localStorage.getItem('email'))
-                .then(response => {
-                  localStorage.setItem("id", response.data.id);
-                  window.location.href = "/";
-                });
+            if(localStorage.getItem("position") === "EMPLOYEE"){
+              AuthenticationService.getEmployeeId(localStorage.getItem('email'))
+                  .then(response => {
+                    localStorage.setItem("id", response.data.id);
+                    window.location.href = "/";
+                  });
+            } else {
+              AuthenticationService.getStreamLeadId(localStorage.getItem('email'))
+                  .then(response => {
+                    localStorage.setItem("id", response.data.id);
+                    window.location.href = "/";
+                  });
+            }
 
 
-            // EmployeeService.getEmployeeAssignments(localStorage.getItem('email'))
-            //     .then(response => {
-            //       localStorage.setItem("employeeId", response.data.id)
-            //     });
-            //
-            // if (localStorage.getItem("roles").includes("STAFFER")) {
-            //   window.location.href = "/Employees";
-            // } else {
-            //   window.location.href = "/Home";
-            // }
+            if(AssessmentService.CheckIfAssessmentIsMade(localStorage.getItem("id")) === true){
+              localStorage.setItem("assessment", "true");
+            } else {
+              localStorage.setItem("assessment", "false");
+            }
 
-            // window.location.href = "/";
 
           })
           .catch((err) => {

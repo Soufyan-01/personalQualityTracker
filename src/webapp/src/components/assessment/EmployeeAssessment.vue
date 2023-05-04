@@ -1,5 +1,22 @@
 <template>
 
+  <div class="text-center" id="titel">
+    <h1>Your assessment</h1>
+  </div>
+
+  <div class="card-wrapper">
+  <v-card title="Your Assessment" text=" Welcome!
+
+  Please note that in order to access all the functionalities, you need to have completed your assessment. If you have not yet completed your assessment, please do so before proceeding to ensure that you have access to all the features and capabilities available. Thank you!
+
+    Welcome to your assessment! This assessment is designed to help you identify your interests and provide advice on the types of activities or careers that may align with your passions. By gaining a better understanding of your interests, you can make more informed decisions about your future path.
+
+    Throughout this assessment, you will be asked a series of questions about your preferences and interests. Please answer each question honestly and to the best of your ability. There are no right or wrong answers, and the results of this assessment will be kept confidential.
+
+    At the end of the assessment, you will receive personalized advice based on your interests and preferences. This advice can help guide you in making decisions about your education, career, or hobbies. So, take your time, answer each question thoughtfully, and let's get started!" variant="tonal">
+  </v-card>
+  </div>
+
   <div class="dialogClass">
   <v-row justify="center">
     <v-dialog
@@ -11,7 +28,7 @@
             color="primary"
             v-bind="props"
         >
-          Open Dialog
+          Make your assessment
         </v-btn>
       </template>
       <v-card>
@@ -149,11 +166,12 @@ export default {
           .then((response) => {
             this.id = response.data;
             console.log(response.data);
+            localStorage.setItem("assessment", "true");
             window.location.reload();
           }).then((res) => {
         console.log(res)
       }).catch(() => {
-          alert("Please make sure u enter your capgemini email!")
+          alert("Please make sure u filled in all the fields!")
       })
     },
     getPersonalityOutOfAssessment(){
@@ -175,12 +193,22 @@ export default {
 </script>
 
 <style scoped>
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px; /* set maximum width */
+  margin: 0 auto; /* center horizontally with auto margins */
+  border-radius: 10px;
+  padding: 20px;
+}
 
 .dialogClass{
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  max-width: 500px; /* set maximum width */
+  margin: 0 auto; /* center horizontally with auto margins */
 }
 
 .getResults {
@@ -188,5 +216,10 @@ export default {
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
+}
+
+#titel{
+  background-color: #B0BEC5;
+  color: white;
 }
 </style>

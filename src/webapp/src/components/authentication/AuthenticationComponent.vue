@@ -213,6 +213,7 @@ export default {
           .then((response) => {
             this.id = response.data;
             localStorage.setItem("email", this.form.username);
+            localStorage.setItem("position", this.form.positions);
             this.dialog = true;
           }).then((res) => {
         console.log(res)
@@ -237,7 +238,8 @@ export default {
           .then((response) => {
             this.id = response.data;
             console.log(response.data.email);
-            window.location.reload();
+            // window.location.reload();
+            window.location.href = "/myAccount/auth/login";
           }).then((res) => {
             console.log(res)
             this.isLoginForm = true;
