@@ -88,29 +88,39 @@ export default {
             console.log(localStorage.getItem("roles"));
 
             if(localStorage.getItem("roles").includes("STREAM_LEAD")){
-              console.log("Ik kom hier")
               AuthenticationService.getStreamLeadId(localStorage.getItem('email'))
                   .then(response => {
                     localStorage.setItem("id", response.data.id);
-                    // window.location.reload();
+
+                    AssessmentService.CheckIfAssessmentIsMade(response.data.id)
+                        .then((resp) => {
+                          if(resp.data.includes("false")){
+                            localStorage.setItem("assessment", "false");
+                          } else {
+                            localStorage.setItem("assessment", "true");
+                          }
+                        })
+
                     window.location.href = "/";
                   });
             } else if (localStorage.getItem("roles").includes("EMPLOYEE")){
-              console.log("Ik kom bij tweede")
               AuthenticationService.getEmployeeId(localStorage.getItem('email'))
                   .then(response => {
                     localStorage.setItem("id", response.data.id);
-                    // window.location.reload();
+
+                    AssessmentService.CheckIfAssessmentIsMade(response.data.id)
+                        .then((resp) => {
+                          if(resp.data === false){
+                            localStorage.setItem("assessment", "false");
+                          } else {
+                            localStorage.setItem("assessment", "true");
+                          }
+                        })
+
                     window.location.href = "/";
                   });
             }
 
-
-            if(AssessmentService.CheckIfAssessmentIsMade(localStorage.getItem("id")) === true){
-              localStorage.setItem("assessment", "true");
-            } else {
-              localStorage.setItem("assessment", "false");
-            }
 
 
           })
