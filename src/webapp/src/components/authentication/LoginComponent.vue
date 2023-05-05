@@ -76,6 +76,8 @@ export default {
         password: this.form.password
       })
           .then((res) => {
+            console.log(res);
+            console.log(res.data);
 
             const tokenRole = res.data.split(',');
 
@@ -83,16 +85,22 @@ export default {
             localStorage.setItem("auth", tokenRole[0]);
             localStorage.setItem("roles", tokenRole[1]);
 
-            if(localStorage.getItem("position") === "EMPLOYEE"){
-              AuthenticationService.getEmployeeId(localStorage.getItem('email'))
-                  .then(response => {
-                    localStorage.setItem("id", response.data.id);
-                    window.location.href = "/";
-                  });
-            } else {
+            console.log(localStorage.getItem("roles"));
+
+            if(localStorage.getItem("roles").includes("STREAM_LEAD")){
+              console.log("Ik kom hier")
               AuthenticationService.getStreamLeadId(localStorage.getItem('email'))
                   .then(response => {
                     localStorage.setItem("id", response.data.id);
+                    // window.location.reload();
+                    window.location.href = "/";
+                  });
+            } else if (localStorage.getItem("roles").includes("EMPLOYEE")){
+              console.log("Ik kom bij tweede")
+              AuthenticationService.getEmployeeId(localStorage.getItem('email'))
+                  .then(response => {
+                    localStorage.setItem("id", response.data.id);
+                    // window.location.reload();
                     window.location.href = "/";
                   });
             }

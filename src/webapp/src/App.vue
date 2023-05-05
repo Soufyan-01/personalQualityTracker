@@ -23,10 +23,22 @@
 
         <v-list density="compact" nav>
 
-          <v-list-item class="d-flex justify-center"  v-if="assessmentMade" title="Home" :to="{ path: '/' }"></v-list-item>
+<!--          Home page-->
+          <v-list-item class="d-flex justify-center"  v-if="(assessmentMade && isLoggedIn)" title="Home" :to="{ path: '/' }"></v-list-item>
+
+<!--          Resluts of assessment for Employee-->
+          <v-list-item class="d-flex justify-center"  v-if="(assessmentMade && isLoggedIn && isEmployee)" title="Results" :to="{ path: '/capgemini/assessment/results' }"></v-list-item>
+
+<!--          All users for StreamLead-->
           <v-list-item prepend-icon="mdi-account-group-outline" class="d-flex justify-center" v-if="(isLoggedIn && isStreamLead)" title="Users" value="AllUsers" :to="{ path: '/capgemini/allUsers' }"></v-list-item>
+
+<!--          Login-->
           <v-list-item class="d-flex justify-center" v-if="isLoggedOut" title="Login" value="Login" :to="{ path: '/myAccount/auth/login' }"></v-list-item>
-          <v-list-item prepend-icon="mdi-folder" class="d-flex justify-center" v-if="isLoggedIn" title="Assessment" :to="{ path: '/capgemini/assessment' }"></v-list-item>
+
+<!--          Assessment-->
+          <v-list-item prepend-icon="mdi-folder" class="d-flex justify-center" v-if="(isLoggedIn && isEmployee)" title="Assessment" :to="{ path: '/capgemini/assessment' }"></v-list-item>
+
+<!--          General-->
           <v-list-item class="d-flex justify-center" v-if="isLoggedIn" @click="logOut" title="Logout" :to="{ path: '/' }"></v-list-item>
 
         </v-list>
@@ -47,9 +59,13 @@ export default {
     id: null
   }),
   computed: {
+    assessmentNotMade() {
+      let assessment = localStorage.getItem("assessment");
+      return assessment !== "true";
+    },
     assessmentMade() {
       let assessment = localStorage.getItem("assessment");
-      return assessment === true;
+      return assessment === "true";
     },
 
     isLoggedIn() {
@@ -83,9 +99,10 @@ export default {
       localStorage.removeItem("roles");
       localStorage.removeItem("email");
       localStorage.removeItem("id");
-      localStorage.removeItem("assessment")
-      this.$router.push("/")
-      window.location.reload();
+      localStorage.removeItem("assessment");
+      localStorage.removeItem("position");
+
+      window.location.href = "http://localhost:8080/myAccount/auth/login#/myAccount/auth/login";
     },
   },
   mounted() {

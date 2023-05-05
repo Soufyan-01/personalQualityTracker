@@ -29,7 +29,7 @@ public class StreamLeadService {
     }
 
     public void createStreamLead(String name, String surname, String email, Function function) throws IOException {
-        StreamLead employee = new StreamLead(name, surname, email, function);
+        StreamLead employee = new StreamLead(name, surname, email, email, function);
 
         User user = userService.loadUserByUsername(email);
 

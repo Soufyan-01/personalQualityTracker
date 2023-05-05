@@ -34,10 +34,9 @@ public class EmployeeService {
     }
 
     public void createNewEmployee(String name, String surname, String email, Function function) throws IOException {
-        Employee employee = new Employee(name, surname, email, function);
+        Employee employee = new Employee(name, surname, email, email, function);
 
         User user = userService.loadUserByUsername(email);
-
 
         if (employee.isValid(email)) {
 

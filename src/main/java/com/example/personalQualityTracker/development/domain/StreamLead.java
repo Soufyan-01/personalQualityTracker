@@ -25,8 +25,8 @@ public class StreamLead extends Person implements Serializable{
     public StreamLead() {
     }
 
-    public StreamLead(String name, String surname,String email, Function function) {
-        super(name, surname, function);
+    public StreamLead(String name, String surname, String loginEmail,String email, Function function) {
+        super(name, surname, loginEmail, function);
         this.email = email;
     }
 

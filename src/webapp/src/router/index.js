@@ -5,6 +5,7 @@ import AuthenticationComponent from "@/components/authentication/AuthenticationC
 import LoginComponent from "@/components/authentication/LoginComponent.vue";
 import AllUsers from "@/components/streamLead/allUsers.vue";
 import EmployeeAssessment from "@/components/assessment/EmployeeAssessment.vue";
+import AssessmentResults from "@/components/assessment/AssessmentResults.vue";
 
 export default createRouter({
     history: createWebHashHistory(),
@@ -33,6 +34,11 @@ export default createRouter({
             path: '/capgemini/assessment',
             name: 'EmployeeAssessment',
             component: EmployeeAssessment
+        },
+        {
+            path: '/capgemini/assessment/results',
+            name: 'AssessmentResults',
+            component: AssessmentResults
         }
     ],
 

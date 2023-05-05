@@ -215,6 +215,7 @@ export default {
             localStorage.setItem("email", this.form.username);
             localStorage.setItem("position", this.form.positions);
             this.dialog = true;
+            // window.location.reload();
           }).then((res) => {
         console.log(res)
         localStorage.setItem("form", res.headers.form);
@@ -234,22 +235,40 @@ export default {
         surname: this.formTwo.surname,
         email: this.formTwo.email
       };
-      AuthenticationService.completeUserAccount(data)
-          .then((response) => {
-            this.id = response.data;
-            console.log(response.data.email);
-            // window.location.reload();
-            window.location.href = "/myAccount/auth/login";
-          }).then((res) => {
-            console.log(res)
-            this.isLoginForm = true;
-          }).catch(() => {
-            if(localStorage.getItem("email") === data.email){
-              alert("Your account is already completed!")
-            } else {
-              alert("Please make sure u enter your capgemini email!")
-            }
-      })
+
+      if(localStorage.getItem("position") === "EMPLOYEE") {
+        AuthenticationService.completeUserAccount(data)
+            .then((response) => {
+              this.id = response.data;
+              console.log(response.data.email);
+              window.location.href = "http://localhost:8080/#/myAccount/auth/login";
+            }).then((res) => {
+          console.log(res)
+          this.isLoginForm = true;
+        }).catch(() => {
+          if (localStorage.getItem("email") === data.email) {
+            alert("Your account is already completed!")
+          } else {
+            alert("Please make sure u enter your capgemini email!")
+          }
+        })
+      } else {
+        AuthenticationService.completeStreamLeadAccount(data)
+            .then((response) => {
+              this.id = response.data;
+              console.log(response.data.email);
+              window.location.href = "http://localhost:8080/#/myAccount/auth/login";
+            }).then((res) => {
+          console.log(res)
+          this.isLoginForm = true;
+        }).catch(() => {
+          if (localStorage.getItem("email") === data.email) {
+            alert("Your account is already completed!")
+          } else {
+            alert("Please make sure u enter your capgemini email!")
+          }
+        })
+      }
     }
   }
 }

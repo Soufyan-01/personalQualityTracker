@@ -24,13 +24,24 @@ public class Person implements Serializable {
     private String surname;
 
     @Column
+    private String loginEmail;
+
+    @Column
     private Function function;
+
+    public Person(String name, String surname, String loginEmail, Function function) {
+        this.name = name;
+        this.surname = surname;
+        this.loginEmail = loginEmail;
+        this.function = function;
+    }
 
     public Person(String name, String surname, Function function) {
         this.name = name;
         this.surname = surname;
         this.function = function;
     }
+
 
     public Person() {
     }

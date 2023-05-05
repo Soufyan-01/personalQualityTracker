@@ -3,8 +3,11 @@ import axios from 'axios';
 const REGISTER_USER = `http://localhost:8081/register`
 const Login_USER = `http://localhost:8081/login`
 const COMPLETE_USER_ACCOUNT = `http://localhost:8081/api/employee/addEmployee`
+const COMPLETE_STREAMLEAD_ACCOUNT = `http://localhost:8081/api/employee/addStreamLead`
 const GET_EMPLOYEE_ID = `http://localhost:8081/api/employee/employeeId/`
 const GET_STREAMLEAD_ID = `http://localhost:8081/api/employee/streamLead/`
+
+
 
 
 class AuthenticationService {
@@ -19,6 +22,10 @@ class AuthenticationService {
 
     completeUserAccount(data){
         return axios.post(COMPLETE_USER_ACCOUNT, data, {headers: {Authorization: 'Bearer ' + localStorage.getItem("auth")}})
+    }
+
+    completeStreamLeadAccount(data){
+        return axios.post(COMPLETE_STREAMLEAD_ACCOUNT, data, {headers: {Authorization: 'Bearer ' + localStorage.getItem("auth")}})
     }
 
     getEmployeeId(email) {

@@ -30,8 +30,8 @@ public class Employee extends Person implements Serializable {
     public Employee() {
     }
 
-    public Employee(String name, String surname,String email, Function function) {
-        super(name, surname, function);
+    public Employee(String name, String surname, String loginEmail,String email, Function function) {
+        super(name, surname, loginEmail, function);
         this.email = email;
     }
 

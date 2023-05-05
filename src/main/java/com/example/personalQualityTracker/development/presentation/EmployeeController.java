@@ -23,9 +23,10 @@ public class EmployeeController {
 
     private final SpringEmployeeRepository springEmployeeRepository;
 
-    public EmployeeController( StreamLeadService streamLeadService, EmployeeService employeeService, SpringEmployeeRepository springEmployeeRepository) {
-        this.streamLeadService = streamLeadService;
+
+    public EmployeeController(EmployeeService employeeService, StreamLeadService streamLeadService, SpringEmployeeRepository springEmployeeRepository) {
         this.employeeService = employeeService;
+        this.streamLeadService = streamLeadService;
         this.springEmployeeRepository = springEmployeeRepository;
     }
 
