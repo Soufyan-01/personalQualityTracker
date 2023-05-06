@@ -185,7 +185,7 @@ export default {
           }).then((res) => {
         console.log(res)
       }).catch(() => {
-        alert("Your results are already there!")
+        window.location.href = "http://localhost:8080/#/capgemini/assessment/results";
       })
     }
   }
@@ -219,7 +219,12 @@ export default {
 }
 
 #titel{
-  background-color: #B0BEC5;
-  color: white;
+  background-color: rgb(230,231,233);
+  color: rgb(14,160,211);
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif; /* Change the font family to Roboto */
 }
 </style>
