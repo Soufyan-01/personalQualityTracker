@@ -25,7 +25,7 @@ public class AssessmentController {
 
     @GetMapping("/assessments/{personId}")
     public Assessment getAssessmentByPersonId(@PathVariable Long personId){
-        return assessmentService.getAssessmentById(personId);
+        return assessmentService.getAssessmentByPersonId(personId);
     }
 
     @GetMapping("/doesExists/{personId}")

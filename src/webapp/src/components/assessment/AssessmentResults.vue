@@ -15,19 +15,23 @@
       <h3>Career path choices</h3>
       <p>Our assessment has identified your unique personality profile, including three key traits that are clearly represented in the diagram provided with your results. This visual representation can help you gain a better understanding of your strengths and tendencies, which can guide you in making informed decisions about your future career path.</p>
 
+      <CareerPathOverview/>
     </div>
   </div>
+
 
 </template>
 
 <script>
 import VueApexCharts from "vue3-apexcharts";
 import AssessmentService from "@/services/assessment/AssessmentService";
+import CareerPathOverview from "@/components/assessment/CareerPathOverview.vue";
 
 export default {
   name: "AssessmentResults",
   components: {
     apexchart: VueApexCharts,
+    CareerPathOverview,
   },
   data() {
     return {
@@ -79,8 +83,8 @@ export default {
             this.chartOptions.labels.push(interestTwo);
             this.chartOptions.labels.push(interestThree);
 
-            console.log(this.series);
-            console.log(this.chartOptions.labels);
+            // console.log(this.series);
+            // console.log(this.chartOptions.labels);
 
           })
     }

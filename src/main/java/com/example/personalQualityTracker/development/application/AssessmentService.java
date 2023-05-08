@@ -44,7 +44,7 @@ public class AssessmentService {
         }
     }
 
-    public Assessment getAssessmentById(Long id) {
+    public Assessment getAssessmentByPersonId(Long id) {
         return springAssessmentRepository.findAssessmentByPersonId(id).get();
     }
 
@@ -55,7 +55,7 @@ public class AssessmentService {
 
 
     public Assessment getPersonality(Long id){
-        Assessment assessment = getAssessmentById(id);
+        Assessment assessment = getAssessmentByPersonId(id);
 
         Person person = employeeService.getEmployeeById(id);
 

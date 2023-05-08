@@ -19,12 +19,15 @@ import static java.util.Collections.max;
 public class Employee extends Person implements Serializable {
 
     @Id
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
     private String email;
+
+//    Needs to be implemented
+    @OneToOne
+    private CareerPathAdvise careerPathAdvise;
 
 
     public Employee() {

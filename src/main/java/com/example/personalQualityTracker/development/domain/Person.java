@@ -1,6 +1,7 @@
 package com.example.personalQualityTracker.development.domain;
 
 import com.example.personalQualityTracker.development.domain.Enum.Function;
+import com.example.personalQualityTracker.development.domain.Enum.Interest;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,6 +30,10 @@ public class Person implements Serializable {
     @Column
     private Function function;
 
+//    Needs to be implemented if needed --> Maybe only by person
+    @Column
+    private Interest interest;
+
     public Person(String name, String surname, String loginEmail, Function function) {
         this.name = name;
         this.surname = surname;
@@ -36,12 +41,9 @@ public class Person implements Serializable {
         this.function = function;
     }
 
-    public Person(String name, String surname, Function function) {
-        this.name = name;
-        this.surname = surname;
-        this.function = function;
-    }
-
+//    public Person(Interest interest) {
+//        this.interest = interest;
+//    }
 
     public Person() {
     }
