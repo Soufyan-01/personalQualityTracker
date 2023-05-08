@@ -26,9 +26,6 @@
 <!--          Home page-->
           <v-list-item class="d-flex justify-center"  v-if="(assessmentMade && isLoggedIn)" title="Home" :to="{ path: '/' }"></v-list-item>
 
-<!--          Resluts of assessment for Employee-->
-          <v-list-item class="d-flex justify-center"  v-if="(assessmentMade && isLoggedIn && isEmployee)" title="Results" :to="{ path: '/capgemini/assessment/results' }"></v-list-item>
-
 <!--          All users for StreamLead-->
           <v-list-item prepend-icon="mdi-account-group-outline" class="d-flex justify-center" v-if="(isLoggedIn && isStreamLead)" title="Users" value="AllUsers" :to="{ path: '/capgemini/allUsers' }"></v-list-item>
 
@@ -38,7 +35,13 @@
 <!--          Assessment-->
           <v-list-item prepend-icon="mdi-folder" class="d-flex justify-center" v-if="(isLoggedIn && isEmployee)" title="Assessment" :to="{ path: '/capgemini/assessment' }"></v-list-item>
 
-<!--          General-->
+          <!--          Resluts of assessment for Employee-->
+          <v-list-item class="d-flex justify-center"  v-if="(assessmentMade && isLoggedIn && isEmployee)" title="Results" :to="{ path: '/capgemini/assessment/results' }"></v-list-item>
+
+          <!--          CareerPathOption, RIGHT NEED TO BE ADDED-->
+          <v-list-item class="d-flex justify-center"  title="Careerpath" :to="{ path: '/capgemini/careerPathOption' }"></v-list-item>
+
+          <!--          General-->
           <v-list-item class="d-flex justify-center" v-if="isLoggedIn" @click="logOut" title="Logout" :to="{ path: '/' }"></v-list-item>
 
         </v-list>

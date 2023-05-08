@@ -25,7 +25,7 @@
 <script>
 import VueApexCharts from "vue3-apexcharts";
 import AssessmentService from "@/services/assessment/AssessmentService";
-import CareerPathOverview from "@/components/assessment/CareerPathOverview.vue";
+import CareerPathOverview from "@/components/careerpath/CareerPathOverview.vue";
 
 export default {
   name: "AssessmentResults",
@@ -82,9 +82,6 @@ export default {
             this.chartOptions.labels.push(interestOne);
             this.chartOptions.labels.push(interestTwo);
             this.chartOptions.labels.push(interestThree);
-
-            // console.log(this.series);
-            // console.log(this.chartOptions.labels);
 
           })
     }
