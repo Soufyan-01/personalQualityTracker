@@ -2,12 +2,44 @@
   <div id="chart">
     <apexchart type="bar" height="350" :options="chartOptions" :series="series"></apexchart>
   </div>
+
+  <v-table
+      fixed-header
+      height="400px"
+      class="table"
+  >
+    <thead>
+    <tr>
+      <th class="text-left">
+        Career path
+      </th>
+      <th class="text-left">
+        Select this career path
+      </th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-for="item in CareerPathOptions2" :key="item">
+      <td class="text-left">{{ item.name }}</td>
+      <td class="text-left">
+        <v-btn class="mx-2" fab dark size="small" color="#0EA0D3" @click="makeCareerPathChoice(item.id)">
+          Select
+          <v-icon dark>mdi-plus-circle</v-icon>
+        </v-btn>
+      </td>
+    </tr>
+    </tbody>
+  </v-table>
+
+
 </template>
 
 <script>
 import VueApexCharts from "vue3-apexcharts";
 import AssessmentService from "@/services/assessment/AssessmentService";
 import AdviseService from "@/services/Advise/AdviseService";
+import CareerPathService from "@/services/CareerPath/CareerPathService";
 
 export default {
   name: "CareerPathOverview",
@@ -16,6 +48,7 @@ export default {
   },
   data() {
     return {
+      CareerPathOptions2: [],
       Percentages: [],
       Paths: [],
 
@@ -59,6 +92,27 @@ export default {
 
     }
   }, methods: {
+
+    getAllCareerPaths2() {
+      if (localStorage.getItem('auth') !== null) {
+        CareerPathService.GetAllCareerPathOptions()
+            .then((response) => {
+              this.CareerPathOptions2 = response.data;
+              console.log(response.data)
+            })
+      } else {
+        console.log("Failed to load data in getAllCareerPaths in CareerPath.vue")
+      }
+    },
+
+    makeCareerPathChoice(careerPathChoiceId) {
+      let employeeId = localStorage.getItem("id");
+
+      CareerPathService.PostCareerPathChoice(employeeId, careerPathChoiceId).then(() => {
+
+        alert("Your preference is saved, go to the course page to see the recommended courses");
+      })
+    },
 
     getPercentagesForTable() {
       let employeeId = localStorage.getItem("id");
@@ -106,7 +160,7 @@ export default {
 
   created() {
     this.getPercentagesForTable();
-
+    this.getAllCareerPaths2();
     this.generateReport();
   }
 
@@ -115,4 +169,7 @@ export default {
 
 <style scoped>
 
+table tr td:first-child {
+  text-align: left;
+}
 </style>

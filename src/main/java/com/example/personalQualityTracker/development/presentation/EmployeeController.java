@@ -1,12 +1,15 @@
 package com.example.personalQualityTracker.development.presentation;
 
+import com.example.personalQualityTracker.development.application.CareerPathService;
 import com.example.personalQualityTracker.development.application.EmployeeService;
 import com.example.personalQualityTracker.development.application.StreamLeadService;
 import com.example.personalQualityTracker.development.data.SpringEmployeeRepository;
+import com.example.personalQualityTracker.development.domain.CareerPath;
 import com.example.personalQualityTracker.development.domain.Employee;
 import com.example.personalQualityTracker.development.domain.StreamLead;
 import com.example.personalQualityTracker.development.presentation.DTO.EmployeeDTO;
 import com.example.personalQualityTracker.development.presentation.DTO.StreamLeadDTO;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -23,11 +26,14 @@ public class EmployeeController {
 
     private final SpringEmployeeRepository springEmployeeRepository;
 
+    private final CareerPathService careerPathService;
 
-    public EmployeeController(EmployeeService employeeService, StreamLeadService streamLeadService, SpringEmployeeRepository springEmployeeRepository) {
+
+    public EmployeeController(EmployeeService employeeService, StreamLeadService streamLeadService, SpringEmployeeRepository springEmployeeRepository, CareerPathService careerPathService) {
         this.employeeService = employeeService;
         this.streamLeadService = streamLeadService;
         this.springEmployeeRepository = springEmployeeRepository;
+        this.careerPathService = careerPathService;
     }
 
     @PostMapping("/addEmployee")
@@ -70,5 +76,12 @@ public class EmployeeController {
     @PutMapping("/updateEmployee/{id}")
     public Employee update(@PathVariable("id") Long id, @RequestBody EmployeeDTO employeeDTO) {
         return employeeService.updateEmployee(id, employeeDTO.image, employeeDTO.email);
+    }
+
+    @PostMapping("/addCareerPathToEmployee/{employeeId}/{careerPathId}")
+    public ResponseEntity<Employee> addCareerPathToEmployee(@PathVariable Long employeeId, @PathVariable Long careerPathId) {
+        Employee employee = employeeService.addCareerPathToEmployee(employeeId, careerPathId);
+
+        return ResponseEntity.ok(employee);
     }
 }

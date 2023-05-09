@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.regex.Pattern;
 
@@ -25,9 +24,8 @@ public class Employee extends Person implements Serializable {
     @Column
     private String email;
 
-//    Needs to be implemented
     @OneToOne
-    private CareerPathAdvise careerPathAdvise;
+    private CareerPath careerPath;
 
 
     public Employee() {
@@ -37,6 +35,11 @@ public class Employee extends Person implements Serializable {
         super(name, surname, loginEmail, function);
         this.email = email;
     }
+
+    public Employee(CareerPath careerPath) {
+        this.careerPath = careerPath;
+    }
+
 
 
     public boolean isValid(String email) {

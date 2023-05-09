@@ -2,12 +2,12 @@ package com.example.personalQualityTracker.development.application;
 
 import com.example.personalQualityTracker.development.data.SpringCareerPathRespository;
 import com.example.personalQualityTracker.development.domain.CareerPath;
-import com.example.personalQualityTracker.development.domain.CareerPathAdvise;
 import com.example.personalQualityTracker.development.domain.Enum.Interest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -31,6 +31,10 @@ public class CareerPathService {
 
     public List<CareerPath> getAllCareerPaths() {
         return springCareerPathRespository.findAll();
+    }
+
+    public Optional<CareerPath> getCareerPathByName(Long careerPathId) {
+        return springCareerPathRespository.findById(careerPathId);
     }
 
 }

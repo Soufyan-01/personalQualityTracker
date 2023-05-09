@@ -1,5 +1,5 @@
 <template>
-  <h1 class="headerOne">Welcome ... here you can find the top 3 results of your assessment</h1>
+  <h1 class="headerOne">Welcome ... here you can find the results of your assessment</h1>
 
   <div class="grid-container">
     <div class="grid-item">
@@ -18,7 +18,6 @@
       <CareerPathOverview/>
     </div>
   </div>
-
 
 </template>
 
