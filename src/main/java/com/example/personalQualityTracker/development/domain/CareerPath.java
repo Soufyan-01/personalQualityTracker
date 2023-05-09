@@ -28,6 +28,8 @@ public class CareerPath implements Serializable {
     @ElementCollection(targetClass = Interest.class)
     private List<Interest> interestList;
 
+
+
     public CareerPath(String name, String description, List<Interest> interestList) {
         this.name = name;
         this.description = description;

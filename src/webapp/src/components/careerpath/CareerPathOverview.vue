@@ -6,7 +6,7 @@
   <div class="tableDiv">
   <v-table
       fixed-header
-      height="400px"
+      height="200px"
       class="table"
   >
     <thead>

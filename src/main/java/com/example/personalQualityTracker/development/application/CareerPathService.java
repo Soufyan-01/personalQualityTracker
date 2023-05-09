@@ -33,7 +33,7 @@ public class CareerPathService {
         return springCareerPathRespository.findAll();
     }
 
-    public Optional<CareerPath> getCareerPathByName(Long careerPathId) {
+    public Optional<CareerPath> getCareerPathById(Long careerPathId) {
         return springCareerPathRespository.findById(careerPathId);
     }
 
