@@ -3,6 +3,7 @@
     <apexchart type="bar" height="350" :options="chartOptions" :series="series"></apexchart>
   </div>
 
+  <div class="tableDiv">
   <v-table
       fixed-header
       height="400px"
@@ -31,8 +32,7 @@
     </tr>
     </tbody>
   </v-table>
-
-
+  </div>
 </template>
 
 <script>
@@ -168,6 +168,18 @@ export default {
 </script>
 
 <style scoped>
+
+.tableDiv{
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center; /* center vertically */
+}
+
+.table{
+  width: 400px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
 
 table tr td:first-child {
   text-align: left;
