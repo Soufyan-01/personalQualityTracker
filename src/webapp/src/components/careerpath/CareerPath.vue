@@ -175,7 +175,6 @@ export default {
         CareerPathService.GetAllCareerPathOptions()
             .then((response) => {
               this.CareerPathOptions = response.data;
-              console.log(response.data)
             })
       } else {
         console.log("Failed to load data in getAllCareerPaths in CareerPath.vue")

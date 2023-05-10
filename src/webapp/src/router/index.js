@@ -7,6 +7,7 @@ import AllUsers from "@/components/streamLead/allUsers.vue";
 import EmployeeAssessment from "@/components/assessment/EmployeeAssessment.vue";
 import AssessmentResults from "@/components/assessment/AssessmentResults.vue";
 import CareerPath from "@/components/careerpath/CareerPath.vue";
+import SoftSkillCourse from "@/components/careerpath/Course/SoftSkillCourse.vue";
 
 export default createRouter({
     history: createWebHashHistory(),
@@ -45,6 +46,11 @@ export default createRouter({
             path: '/capgemini/careerPathOption',
             name: 'CareerPathOption',
             component: CareerPath
+        },
+        {
+            path: '/capgemini/softSkillCourse',
+            name: 'SoftSkillCourse',
+            component: SoftSkillCourse
         },
     ],
 

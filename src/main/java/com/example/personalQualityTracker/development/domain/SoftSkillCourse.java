@@ -1,5 +1,6 @@
 package com.example.personalQualityTracker.development.domain;
 
+import com.example.personalQualityTracker.development.domain.Enum.Interest;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,12 +29,16 @@ public class SoftSkillCourse implements Serializable {
     @OneToMany
     private List<CareerPath> careerPaths;
 
-    public SoftSkillCourse(String courseName, String courseDescription, int courseLevel) {
+    @Enumerated(EnumType.ORDINAL)
+    @ElementCollection(targetClass = Interest.class)
+    private List<Interest> interestList;
+
+    public SoftSkillCourse(String courseName, String courseDescription, int courseLevel, List<Interest> interestList) {
         this.courseName = courseName;
         this.courseDescription = courseDescription;
         this.courseLevel = courseLevel;
+        this.interestList = interestList;
     }
-
     public SoftSkillCourse(List<CareerPath> careerPaths) {
         this.careerPaths = careerPaths;
     }

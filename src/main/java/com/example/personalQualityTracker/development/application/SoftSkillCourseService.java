@@ -2,6 +2,7 @@ package com.example.personalQualityTracker.development.application;
 
 import com.example.personalQualityTracker.development.data.SpringSoftSkillCourseRepository;
 import com.example.personalQualityTracker.development.domain.CareerPath;
+import com.example.personalQualityTracker.development.domain.Enum.Interest;
 import com.example.personalQualityTracker.development.domain.SoftSkillCourse;
 import org.springframework.stereotype.Service;
 
@@ -28,9 +29,13 @@ public class SoftSkillCourseService {
     }
 
 
-    public SoftSkillCourse createNewSoftSkill(String courseName, String courseDescription, int courseLevel){
+    public List<SoftSkillCourse> getAllSoftSkillCourses() {
+        return springSoftSkillCourseRepository.findAll();
+    }
 
-        SoftSkillCourse softSkillCourse = new SoftSkillCourse(courseName, courseDescription, courseLevel);
+    public SoftSkillCourse createNewSoftSkill(String courseName, String courseDescription, int courseLevel, List<Interest> interestList){
+
+        SoftSkillCourse softSkillCourse = new SoftSkillCourse(courseName, courseDescription, courseLevel, interestList);
 
         return springSoftSkillCourseRepository.save(softSkillCourse);
     }

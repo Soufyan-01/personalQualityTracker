@@ -25,12 +25,18 @@ public class SoftSkillCourseController {
     @PostMapping("/newCourse")
     public SoftSkillCourse newSoftSkillCourse(@RequestBody SoftSkillCourseDTO softSkillCourseDTO){
         return softSkillCourseService.createNewSoftSkill(softSkillCourseDTO.courseName,
-                softSkillCourseDTO.courseDescription, softSkillCourseDTO.courseLevel);
+                softSkillCourseDTO.courseDescription, softSkillCourseDTO.courseLevel,
+                softSkillCourseDTO.interestList);
     }
 
     @PostMapping("/finishCourseOption/{courseId}")
     public SoftSkillCourse addCareerPathsToSoftSkillCourse(@PathVariable Long courseId, @RequestBody SoftSkillCourseDTO softSkillCourseDTO) {
                 return softSkillCourseService.addCareerPathsToSoftSkillCourse(courseId, softSkillCourseDTO.careerPath);
+    }
+
+    @GetMapping("/allCourses")
+    public List<SoftSkillCourse> getAllSoftSkillCourses(){
+        return softSkillCourseService.getAllSoftSkillCourses();
     }
 
 
