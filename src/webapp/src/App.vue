@@ -44,6 +44,9 @@
           <!--          CareerPathOption, RIGHT NEED TO BE ADDED IS FOR STREAMLEAD-->
           <v-list-item class="d-flex justify-center"  title="Courses" :to="{ path: '/capgemini/softSkillCourse' }"></v-list-item>
 
+          <!--          CareerPathOption, RIGHT NEED TO BE ADDED IS FOR STREAMLEAD-->
+          <v-list-item class="d-flex justify-center"  title="Soft skill radar" :to="{ path: '/capgemini/softSkillRadarChart' }"></v-list-item>
+
           <!--          General-->
           <v-list-item class="d-flex justify-center" v-if="isLoggedIn" @click="logOut" title="Logout" :to="{ path: '/' }"></v-list-item>
 

@@ -33,6 +33,10 @@ public class SoftSkillCourseService {
         return springSoftSkillCourseRepository.findAll();
     }
 
+    public SoftSkillCourse getSoftSkillCourseBasedOnId(Long id) {
+        return springSoftSkillCourseRepository.getById(id);
+    }
+
     public SoftSkillCourse createNewSoftSkill(String courseName, String courseDescription, int courseLevel, List<Interest> interestList){
 
         SoftSkillCourse softSkillCourse = new SoftSkillCourse(courseName, courseDescription, courseLevel, interestList);

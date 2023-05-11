@@ -1,7 +1,7 @@
 <template>
   <h1 class="headerOne">Welcome ... here you can find and add Soft Skill courses</h1>
 
-
+  <div class="grid-container">
   <div class="table-class">
   <v-table
       fixed-header
@@ -16,6 +16,9 @@
         Course description
       </th>
       <th class="text-left">
+        Course level
+      </th>
+      <th class="text-left">
         Course Interests
       </th>
       <th class="text-left">
@@ -27,10 +30,11 @@
     <tr
         v-for="item in SoftSkillCourses"
         :key="item.name"
-        @click="selectedCourse = item; dialog2 = true"
+        @click="selectedCourse = item; getSoftSkillById(item.id); dialog2 = true"
     >
       <td>{{ item.courseName }}</td>
       <td>{{ item.courseDescription }}</td>
+      <td>{{ item.courseLevel === 0 ? 'Beginner' : 'Professional' }}</td>
       <td>
       <ul>
         <li v-for="interest in item.interestList" :key="interest">{{ interest }}</li>
@@ -46,10 +50,8 @@
   </v-table>
   </div>
 
-<!--  Hier verder afmaken divjes in grid plaatsen
-buttons list toevoegen moet dynamisch met careerPath chouices de value moet
-de id zijn-->
 
+    <div class="buttonDiv">
   <v-row justify="center">
     <v-dialog
         v-model="dialog"
@@ -57,12 +59,7 @@ de id zijn-->
         width="1024"
     >
       <template v-slot:activator="{ props }">
-        <v-btn
-            color="primary"
-            v-bind="props"
-        >
-          Add course
-        </v-btn>
+        <v-btn v-bind="props" icon="mdi-plus" size="small" color="green" class="addBtn"></v-btn>
       </template>
       <v-card>
         <v-card-title>
@@ -159,9 +156,20 @@ de id zijn-->
         Course Details
       </v-card-title>
 
-<!--      <v-card-text>-->
-<!--        {{ selectedCourse.id }}-->
-<!--      </v-card-text>-->
+<!--            <v-card-text>-->
+<!--              {{ selectedCourse }}-->
+<!--            </v-card-text>-->
+
+      <p class="textP">In this chart you can find the interest fields that are hit by this course</p>
+
+
+      <div id="chart">
+        <apexchart type="radar" height="350" :options="chartOptions" :series="series">
+        </apexchart>
+      </div>
+
+      <p class="textP">Know you now the interest fields that are hit you can select the career paths that fit with this course:</p>
+
       <v-card-actions>
                 <v-autocomplete
                     v-model="form.careerPath"
@@ -182,17 +190,22 @@ de id zijn-->
       </v-card-actions>
     </v-card>
   </v-dialog>
+    </div>
+
+  </div>
 
 </template>
 
 <script>
 import SoftSkillCourseService from "@/services/CareerPath/Course/SoftSkillCourseService";
 import CareerPathService from "@/services/CareerPath/CareerPathService";
-
-// Ergens get doen van careerpath gegevens
+import VueApexCharts from "vue3-apexcharts";
 
 export default {
   name: "SoftSkillCourse",
+  components: {
+    apexchart: VueApexCharts,
+  },
   data() {
     return {
       selectedCourse: [],
@@ -210,9 +223,105 @@ export default {
       levelItems: [{ name: 'Beginner', value: 1 },{ name: 'Professional', value: 2 }],
       interestListItems: [{ name: 'Realistic', value: 1 },{ name: 'Investigative', value: 2 },{ name: 'Artistic', value: 3 },{ name: 'Social', value: 4 },{ name: 'Enterprising', value: 5 }, { name: 'Conventional', value: 6 }],
 
+
+      CoursesSoftSkill: [],
+
+      series: [{
+        name: 'Series 1',
+        data: [],
+      }],
+      chartOptions: {
+        chart: {
+          height: 350,
+          type: 'radar',
+        },
+        dataLabels: {
+          enabled: true
+        },
+        plotOptions: {
+          radar: {
+            size: 140,
+            polygons: {
+              strokeColors: '#e9e9e9',
+              fill: {
+                colors: ['#f8f8f8', '#fff']
+              }
+            }
+          }
+        },
+        title: {
+          text: 'Interest fields tackled by this course, you can'
+        },
+        colors: ['#6eb5d2'],
+        markers: {
+          size: 4,
+          colors: ['#fff'],
+          strokeColor: '#6eb5d2',
+          strokeWidth: 2,
+        },
+        tooltip: {
+          y: {
+            formatter: function(val) {
+              return val
+            }
+          }
+        },
+        xaxis: {
+          categories: ['Realistic', 'Investigative', 'Artistic', 'Social', 'Enterprising', 'Conventional']
+        },
+        yaxis: {
+          tickAmount: 2,
+          labels: {
+            formatter: function(val, i) {
+              if (i % 2 === 0) {
+                return val
+              } else {
+                return ''
+              }
+            }
+          }
+        }
+      },
+
     }
   },
   methods: {
+    getSoftSkillById(courseId) {
+      if (localStorage.getItem('auth') !== null) {
+        let count = {
+          REALISTIC: 0,
+          INVESTIGATIVE: 0,
+          ARTISTIC: 0,
+          SOCIAL: 0,
+          ENTERPRISING: 0,
+          CONVENTIONAL: 0
+        };
+
+        SoftSkillCourseService.GetSoftSkillCourseById(courseId)
+            .then((response) => {
+              this.CoursesSoftSkill = response.data;
+              console.log(response.data.interestList)
+              this.CoursesSoftSkill.interestList.forEach((information) => {
+                if (information === 'REALISTIC') {
+                  count.REALISTIC += 1;
+                } else if (information === 'INVESTIGATIVE') {
+                  count.INVESTIGATIVE += 1;
+                } else if (information === 'ARTISTIC') {
+                  count.ARTISTIC += 1;
+                } else if (information === 'SOCIAL') {
+                  count.SOCIAL += 1;
+                } else if (information === 'ENTERPRISING') {
+                  count.ENTERPRISING += 1;
+                } else if (information === 'CONVENTIONAL') {
+                  count.CONVENTIONAL += 1;
+                }
+              });
+              this.series[0].data = Object.values(count);
+            });
+      }
+    },
+
+
     getAllCareerPaths(){
       if (localStorage.getItem('auth') !== null) {
         CareerPathService.GetAllCareerPathOptions()
@@ -272,6 +381,9 @@ export default {
     this.getAllSoftSkillCourses();
     this.getAllCareerPaths();
 
+    // this.getSoftSkillById();
+
+
   }
 }
 </script>
@@ -296,6 +408,22 @@ export default {
 
 tr:hover {
   cursor: pointer;
+  background-color: #F1F2F4;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1000px 1fr;
+  gap: 10px;
+}
+
+.textP{
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.addBtn{
+  margin-top: 20px;
 }
 
 </style>

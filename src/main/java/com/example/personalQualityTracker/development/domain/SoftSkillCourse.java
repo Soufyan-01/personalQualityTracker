@@ -1,6 +1,7 @@
 package com.example.personalQualityTracker.development.domain;
 
 import com.example.personalQualityTracker.development.domain.Enum.Interest;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "SoftSkillCourse")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class SoftSkillCourse implements Serializable {
 
     @Id
@@ -26,8 +28,17 @@ public class SoftSkillCourse implements Serializable {
 
     @Column
     private int courseLevel;
-    @OneToMany
+//    @ManyToMany
+//    private List<CareerPath> careerPaths;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "soft_skill_course_career_paths",
+            joinColumns = @JoinColumn(name = "soft_skill_course_id"),
+            inverseJoinColumns = @JoinColumn(name = "career_paths_id"),
+            uniqueConstraints = {},
+            indexes = {})
     private List<CareerPath> careerPaths;
+
 
     @Enumerated(EnumType.ORDINAL)
     @ElementCollection(targetClass = Interest.class)
