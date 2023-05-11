@@ -38,7 +38,7 @@
       </td>
       <td>
         <ul>
-          <li v-for="careerPath in item.careerPaths" :key="careerPath">{{ careerPath }}</li>
+          <li v-for="careerPath in item.careerPaths" :key="careerPath">{{ careerPath.name }}</li>
         </ul>
       </td>
     </tr>
@@ -159,68 +159,29 @@ de id zijn-->
         Course Details
       </v-card-title>
 
-      <v-card-text>
-        {{ selectedCourse }}
-      </v-card-text>
+<!--      <v-card-text>-->
+<!--        {{ selectedCourse.id }}-->
+<!--      </v-card-text>-->
       <v-card-actions>
-        <v-btn color="primary" text @click="dialog2 = false">
-          Close
-        </v-btn>
-
-
-                <v-select
-                    v-model="SelectedCareerPath"
+                <v-autocomplete
+                    v-model="form.careerPath"
                     :items="CareerPathOptions"
                     :item-title="'name'"
                     :item-value="'id'"
                     label="Select career path"
-                    return-object
                     multiple
-                ></v-select>
+                ></v-autocomplete>
 
+        <v-btn color="error" text @click="dialog2 = false">
+          Close
+        </v-btn>
 
-        <!--        <div>-->
-<!--          <v-app id="inspire">-->
-<!--            <v-select :items="CareerPathOptions"-->
-<!--                      v-model="SelectedCareerPath"-->
-<!--                      multiple-->
-<!--                      label="Select">-->
-<!--            </v-select>-->
-<!--            <ul>-->
-<!--              <li v-for="path in SelectedCareerPath">{{ path.name }}</li>-->
-<!--            </ul>-->
-<!--          </v-app>-->
-<!--        </div>-->
-
-
-
-<!--                <v-select-->
-<!--            v-model="SelectedCareerPath"-->
-<!--            :items="CareerPathOptions"-->
-<!--            label="Select options"-->
-<!--            multiple-->
-<!--        >-->
-<!--          <template v-slot:item="{ item }">-->
-<!--            <v-list-item-content>-->
-<!--              <v-list-item-title v-text="item"></v-list-item-title>-->
-<!--              <v-list-item-title v-text="item.value.name"></v-list-item-title>-->
-
-<!--            </v-list-item-content>-->
-<!--          </template>-->
-<!--        </v-select>-->
-
-
-
-
-
-
-
-
-
+        <v-btn color="#0EA0D3" text @click="postCareerPaths(selectedCourse.id)">
+          Connect course
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
-
 
 </template>
 
@@ -234,17 +195,17 @@ export default {
   name: "SoftSkillCourse",
   data() {
     return {
-      selectedCourse: null,
+      selectedCourse: [],
       dialog2: false,
       SoftSkillCourses: [],
       CareerPathOptions: [],
-      SelectedCareerPath: [],
       dialog: false,
       form: {
         courseName: "",
         courseDescription: "",
         courseLevel: "",
-        interestList: []
+        interestList: [],
+        careerPath: []
       },
       levelItems: [{ name: 'Beginner', value: 1 },{ name: 'Professional', value: 2 }],
       interestListItems: [{ name: 'Realistic', value: 1 },{ name: 'Investigative', value: 2 },{ name: 'Artistic', value: 3 },{ name: 'Social', value: 4 },{ name: 'Enterprising', value: 5 }, { name: 'Conventional', value: 6 }],
@@ -264,6 +225,17 @@ export default {
       }
     },
 
+    postCareerPaths(softSkillCourseId){
+      const data = {
+        id: null,
+        careerPath: this.form.careerPath
+      };
+      SoftSkillCourseService.ConnectSoftSkillWithPath(softSkillCourseId, data)
+          .then((response)=>{
+            this.id = response.data;
+            window.location.reload();
+          })
+    },
 
     getAllSoftSkillCourses() {
       if (localStorage.getItem('auth') !== null) {
@@ -299,6 +271,7 @@ export default {
   created() {
     this.getAllSoftSkillCourses();
     this.getAllCareerPaths();
+
   }
 }
 </script>

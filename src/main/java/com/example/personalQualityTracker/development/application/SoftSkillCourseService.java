@@ -45,6 +45,8 @@ public class SoftSkillCourseService {
 
         List<CareerPath> careerPaths = new ArrayList<>();
 
+        System.out.println(careerPath);
+
         for (Long careerPathId : careerPath) {
             CareerPath careerPath2 = careerPathService.getCareerPathById(careerPathId)
                     .orElseThrow(() -> new EntityNotFoundException("Career path with id " + careerPathId + " not found"));
