@@ -59,7 +59,10 @@
         width="1024"
     >
       <template v-slot:activator="{ props }">
-        <v-btn v-bind="props" icon="mdi-plus" size="small" color="green" class="addBtn"></v-btn>
+        <v-btn text v-bind="props" size="small" color="green" class="addBtn">
+          Add new course
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
       </template>
       <v-card>
         <v-card-title>
@@ -390,10 +393,40 @@ export default {
 
 <style scoped>
 
-.table-class{
-  /*width: 700px;*/
-  margin-left: 260px;
-  /*margin-right: 250px;*/
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+  margin: 10px 75px; /* Set the margin to create grid gap on left and right */
+}
+
+.table-class {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  margin-left: 180px;
+}
+
+.v-table th {
+  text-align: left;
+  background-color: #fafafa;
+  font-weight: bold;
+  border-bottom: 1px solid #f1f1f1;
+  padding: 10px;
+}
+
+.v-table td {
+  padding: 10px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.v-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.v-table tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
 .headerOne {
@@ -411,11 +444,16 @@ tr:hover {
   background-color: #F1F2F4;
 }
 
+:root {
+  --main-column-width: 1000px;
+}
+
 .grid-container {
   display: grid;
-  grid-template-columns: 1000px 1fr;
+  grid-template-columns: var(--main-column-width) 1fr;
   gap: 10px;
 }
+
 
 .textP{
   margin-left: 15px;

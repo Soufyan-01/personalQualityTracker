@@ -108,6 +108,7 @@ export default {
   padding: 20px;
   text-align: center;
   border-radius: 10px;
+  color: rgb(230,231,233);
 }
 
 

@@ -25,8 +25,9 @@
     >
       <template v-slot:activator="{ props }">
         <v-btn
-            color="primary"
+            color="#0EA0D3FF"
             v-bind="props"
+            class="makeButton"
         >
           Make your assessment
         </v-btn>
@@ -197,10 +198,10 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 500px; /* set maximum width */
-  margin: 0 auto; /* center horizontally with auto margins */
+  max-width: 1000px; /* set maximum width */
+  /*margin: 0 auto; !* center horizontally with auto margins *!*/
   border-radius: 10px;
-  padding: 20px;
+  margin-left: 200px;
 }
 
 .dialogClass{
@@ -227,4 +228,10 @@ export default {
   text-align: center;
   font-family: 'Roboto', sans-serif; /* Change the font family to Roboto */
 }
+
+.makeButton{
+  margin-top: 30px;
+
+}
+
 </style>
