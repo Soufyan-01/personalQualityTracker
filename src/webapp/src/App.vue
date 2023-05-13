@@ -59,6 +59,10 @@
       <v-main style="height: 250px"></v-main>
     </v-layout>
   </v-card>
+
+  <footer class="footer">
+    <p>© 2023 Personal Quality Tracker. All rights reserved.</p>
+  </footer>
 </template>
 
 <script>
@@ -122,3 +126,17 @@ export default {
   }
 }
 </script>
+
+
+<style scoped>
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px; /* adjust the height to your preference */
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  padding: 15px;
+}
+</style>

@@ -16,41 +16,55 @@
       <p>Discover new courses and plan your career path</p>
     </div>
     <div class="main">
-      <h2>Featured Courses</h2>
       <div class="course-list">
         <div class="course">
-          <img src="course1.jpg" alt="Course 1">
-          <h3>Course 1</h3>
-          <p>Description of course 1</p>
-          <a href="#" class="btn">Learn More</a>
+          <img class="imageL" style="width: 55%;" :src="logoTwo" alt="assessment">
+          <h3>Assessment</h3>
+          <p>Before you can use all the functions of the application, you need to finish the assessment</p>
+          <a href="#/capgemini/assessment" class="btn">Go to assessment</a>
         </div>
         <div class="course">
-          <img src="course2.jpg" alt="Course 2">
-          <h3>Course 2</h3>
-          <p>Description of course 2</p>
-          <a href="#" class="btn">Learn More</a>
+          <img class="imageL" style="width: 55%;" :src="logo" alt="assessmentResults">
+          <h3>Assessment results</h3>
+          <p>See your assessment results, and select your preferred career path based on out advise</p>
+          <a href="#/capgemini/assessment/results" class="btn">Go to my results</a>
         </div>
         <div class="course">
-          <img src="course3.jpg" alt="Course 3">
-          <h3>Course 3</h3>
-          <p>Description of course 3</p>
-          <a href="#" class="btn">Learn More</a>
+          <img class="imageL" style="width: 55%;" :src="logoThree" alt="softSkill">
+          <h3>Soft Skill Courses</h3>
+          <p>See all the Soft Skill courses that fit your career path based on the assessment</p>
+          <a href="#" class="btn">Go to courses</a>
+        </div>
+        <div class="course">
+          <img class="imageL" style="width: 30%;" :src="logoFour" alt="hardSkill">
+          <h3>Hard Skill Courses</h3>
+          <p>See all the Hard Skill courses that fit your career path based on the assessment</p>
+          <a href="#" class="btn">Go to courses</a>
         </div>
       </div>
-    </div>
-    <div class="footer">
-      <p>© 2023 MyWebsite. All rights reserved.</p>
     </div>
   </div>
 </template>
 
 
 <script>
+import pictureOne from '../assets/assessmentResult.jpg';
+import pictureTwo from '../assets/assessment.jpg';
+import pictureThree from '../assets/softSkill.jpg';
+import pictureFour from '../assets/hardSkill.jpg';
+
+
 
 export default {
   name: 'HelloWorld',
 
   data: () => ({
+    logo: pictureOne,
+    logoTwo: pictureTwo,
+    logoThree: pictureThree,
+    logoFour: pictureFour,
+
+
     ecosystem: [
       {
         text: 'vuetify-loader',
@@ -122,8 +136,9 @@ padding: 50px;
 
 .course-list {
 display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 30px;
+grid-template-columns: repeat(4, 1fr);
+gap: 20px;
+  padding-left: 50px;
 }
 
 .course {
@@ -163,9 +178,13 @@ transition: background-color 0.3s;
 background-color: #057191;
 }
 
-.footer {
-background-color: #ddd;
-padding: 20px;
-text-align: center;
+.imageL{
+  height: 50px;
 }
+
+/*.footer {*/
+/*background-color: #ddd;*/
+/*padding: 20px;*/
+/*text-align: center;*/
+/*}*/
 </style>
