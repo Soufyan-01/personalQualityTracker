@@ -52,4 +52,9 @@ public class AssessmentController {
     public Map<String, Integer> getMatchingCourses(@PathVariable Long id) {
         return assessmentService.findMatchingCourses(id);
     }
+
+    @GetMapping("/matchingcourseshardSkill/{id}")
+    public Map<String, Integer> getMatchingCoursesHardSkill(@PathVariable Long id) {
+        return assessmentService.findMatchHardSkill(id);
+    }
 }

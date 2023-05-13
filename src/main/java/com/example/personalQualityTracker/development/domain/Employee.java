@@ -2,6 +2,7 @@ package com.example.personalQualityTracker.development.domain;
 
 import com.example.personalQualityTracker.development.domain.Enum.Function;
 import com.example.personalQualityTracker.development.domain.Enum.Interest;
+import com.example.personalQualityTracker.development.presentation.DTO.HardSkillCourseDTO;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Fetch;
@@ -35,6 +36,9 @@ public class Employee extends Person implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<SoftSkillCourse> softSkillCourses;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<HardSkillCourse> hardSkillCourses;
+
     public Employee() {
     }
 
@@ -52,6 +56,10 @@ public class Employee extends Person implements Serializable {
         return null;
     }
 
+    public Long addHardSkillCourse(HardSkillCourse hardSkillCourse) {
+        hardSkillCourses.add(hardSkillCourse);
+        return null;
+    }
 
     public boolean isValid(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";

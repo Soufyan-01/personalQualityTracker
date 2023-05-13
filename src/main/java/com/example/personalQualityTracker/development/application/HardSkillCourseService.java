@@ -72,4 +72,8 @@ public class HardSkillCourseService {
         return springHardSkillCourseRepository.save(hardSkillCourse);
     }
 
+    public Long getHardSkilLCourseByName(String name) {
+        return springHardSkillCourseRepository.findHardSkillCourseByCourseName(name).get().getId();
+    }
+
 }

@@ -6,6 +6,7 @@ import com.example.personalQualityTracker.development.domain.*;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.example.personalQualityTracker.development.domain.Enum.Function;
 import com.example.personalQualityTracker.development.domain.Enum.Interest;
+import com.example.personalQualityTracker.development.presentation.DTO.HardSkillCourseDTO;
 import com.example.personalQualityTracker.security.application.UserService;
 import com.example.personalQualityTracker.security.data.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -30,11 +31,14 @@ public class EmployeeService {
 
     private final CareerPathService careerPathService;
 
-    public EmployeeService(SpringEmployeeRepository springEmployeeRepository, UserService userService, SoftSkillCourseService softSkillCourseService, CareerPathService careerPathService) {
+    private final HardSkillCourseService hardSkillCourseService;
+
+    public EmployeeService(SpringEmployeeRepository springEmployeeRepository, UserService userService, SoftSkillCourseService softSkillCourseService, CareerPathService careerPathService, HardSkillCourseService hardSkillCourseService) {
         this.springEmployeeRepository = springEmployeeRepository;
         this.userService = userService;
         this.softSkillCourseService = softSkillCourseService;
         this.careerPathService = careerPathService;
+        this.hardSkillCourseService = hardSkillCourseService;
     }
 
     public void createNewEmployee(String name, String surname, String email, Function function) throws IOException {
@@ -93,7 +97,13 @@ public class EmployeeService {
         Employee employee = getEmployeeById(employeeId);
 
         return employee.addSoftSkillCourse(softSkillCourseService.getSoftSkillCourseById(courseId));
-
     }
+
+    public Long addSoftHardCourseToEmployee(Long employeeId, Long courseId) {
+        Employee employee = getEmployeeById(employeeId);
+
+        return employee.addHardSkillCourse(hardSkillCourseService.getHardSkillCourseById(courseId));
+    }
+
 
 }

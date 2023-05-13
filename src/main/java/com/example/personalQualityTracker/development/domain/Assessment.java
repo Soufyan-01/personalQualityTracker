@@ -102,6 +102,20 @@ public class Assessment {
     public Assessment() {
     }
 
+    public Map<String, Integer> matchHardSkillCourses(List<HardSkillCourse> hardSkillCourses, CareerPath careerPath) {
+        Map<String, Integer> matchingCourse = new HashMap<>();
+        for (HardSkillCourse hardSkillCourse : hardSkillCourses) {
+            for (CareerPath careerPath1: hardSkillCourse.getCareerPaths()){
+                if (careerPath1.equals(careerPath)){
+                    matchingCourse.put(hardSkillCourse.getCourseName(), 100);
+                }
+            }
+        }
+        return matchingCourse;
+    }
+
+
+
     public Map<String, Integer> matchingSoftSkillCourses(Interest interestOne, Interest interestTwo, Interest interestThree,
                                                                   List<SoftSkillCourse> softSkillCourses, CareerPath careerPath) {
 

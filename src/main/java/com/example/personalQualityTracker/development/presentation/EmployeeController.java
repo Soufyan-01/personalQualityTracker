@@ -89,4 +89,9 @@ public class EmployeeController {
     public Long addSoftSkillCourseToEmployee(@PathVariable Long employeeId, @PathVariable Long courseId) {
         return employeeService.addSoftSkillCourseToEmployee(employeeId, courseId);
     }
+
+    @PostMapping("/addHardSkillCourse/{employeeId}/{courseId}")
+    public Long addHardSkillCourseToEmployee(@PathVariable Long employeeId, @PathVariable Long courseId) {
+        return employeeService.addSoftHardCourseToEmployee(employeeId, courseId);
+    }
 }

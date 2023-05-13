@@ -23,11 +23,14 @@ public class AssessmentService {
 
     private final CareerPathService careerPathService;
 
-    public AssessmentService(SpringAssessmentRepository springAssessmentRepository, EmployeeService employeeService, SoftSkillCourseService softSkillCourseService, CareerPathService careerPathService) {
+    private final HardSkillCourseService hardSkillCourseService;
+
+    public AssessmentService(SpringAssessmentRepository springAssessmentRepository, EmployeeService employeeService, SoftSkillCourseService softSkillCourseService, CareerPathService careerPathService, HardSkillCourseService hardSkillCourseService) {
         this.springAssessmentRepository = springAssessmentRepository;
         this.employeeService = employeeService;
         this.softSkillCourseService = softSkillCourseService;
         this.careerPathService = careerPathService;
+        this.hardSkillCourseService = hardSkillCourseService;
     }
 
     public Assessment createNewAssessment(Long id, QuestionOne questionOne, QuestionTwo questionTwo, QuestionThree questionThree, QuestionFour questionFour, QuestionFive questionFive, QuestionSix questionSix, QuestionSeven questionSeven, QuestionEight questionEight){
@@ -107,6 +110,18 @@ public class AssessmentService {
 
         return assessment.matchingSoftSkillCourses(
                 interestOne, interestTwo, interestThree, softSkillCourses, assessment.getCareerPath()
+        );
+    }
+
+    public Map<String, Integer> findMatchHardSkill(Long id) {
+
+        Assessment assessment = getAssessmentByPersonId(id);
+
+
+        List<HardSkillCourse> hardSkillCourses = hardSkillCourseService.getAllHardSkillCourses();
+
+        return assessment.matchHardSkillCourses(
+                hardSkillCourses, assessment.getCareerPath()
         );
     }
 

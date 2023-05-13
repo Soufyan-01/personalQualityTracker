@@ -48,11 +48,11 @@
           <v-list-item class="d-flex justify-center"  title="Soft skill radar" :to="{ path: '/capgemini/softSkillRadarChart' }"></v-list-item>
 
           <!--          CareerPathOption, RIGHT NEED TO BE ADDED IS FOR STREAMLEAD-->
-          <v-list-item class="d-flex justify-center"  title="Select Soft Skill" :to="{ path: '/capgemini/chooseSoftSkillCourse' }"></v-list-item>
+          <v-list-item class="d-flex justify-center"  title="Select courses" :to="{ path: '/capgemini/chooseCourse' }"></v-list-item>
 
 
           <!--          CareerPathOption, RIGHT NEED TO BE ADDED IS FOR STREAMLEAD-->
-          <v-list-item class="d-flex justify-center"  title="Hard skill radar" :to="{ path: '/capgemini/hardSkillCourse' }"></v-list-item>
+          <v-list-item class="d-flex justify-center"  title="Hard skill courses" :to="{ path: '/capgemini/hardSkillCourse' }"></v-list-item>
 
           <!--          General-->
           <v-list-item class="d-flex justify-center" v-if="isLoggedIn" @click="logOut" title="Logout" :to="{ path: '/' }"></v-list-item>

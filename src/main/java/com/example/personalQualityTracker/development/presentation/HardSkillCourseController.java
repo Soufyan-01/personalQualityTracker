@@ -41,4 +41,10 @@ public class HardSkillCourseController {
         return hardSkillCourseService.getHardSkillCourseBasedOnId(id);
     }
 
+    @GetMapping("/hardskillcourseByName/{name}")
+    public Long getHardSkillCourseByName(@PathVariable String name) {
+        return hardSkillCourseService.getHardSkilLCourseByName(name);
+    }
+
+
 }
