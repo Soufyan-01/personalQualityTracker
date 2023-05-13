@@ -1,12 +1,17 @@
 package com.example.personalQualityTracker.development.domain;
 
 import com.example.personalQualityTracker.development.domain.Enum.Function;
+import com.example.personalQualityTracker.development.domain.Enum.Interest;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.*;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static java.lang.Math.min;
 import static java.util.Collections.max;
@@ -27,6 +32,8 @@ public class Employee extends Person implements Serializable {
     @OneToOne
     private CareerPath careerPath;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<SoftSkillCourse> softSkillCourses;
 
     public Employee() {
     }
@@ -40,6 +47,9 @@ public class Employee extends Person implements Serializable {
         this.careerPath = careerPath;
     }
 
+    public void addSoftSkillCourse(SoftSkillCourse softSkillCourse) {
+        softSkillCourses.add(softSkillCourse);
+    }
 
 
     public boolean isValid(String email) {

@@ -4,16 +4,16 @@ import com.example.personalQualityTracker.development.application.CareerPathServ
 import com.example.personalQualityTracker.development.application.EmployeeService;
 import com.example.personalQualityTracker.development.application.StreamLeadService;
 import com.example.personalQualityTracker.development.data.SpringEmployeeRepository;
-import com.example.personalQualityTracker.development.domain.CareerPath;
-import com.example.personalQualityTracker.development.domain.Employee;
-import com.example.personalQualityTracker.development.domain.StreamLead;
+import com.example.personalQualityTracker.development.domain.*;
 import com.example.personalQualityTracker.development.presentation.DTO.EmployeeDTO;
+import com.example.personalQualityTracker.development.presentation.DTO.HardSkillCourseDTO;
 import com.example.personalQualityTracker.development.presentation.DTO.StreamLeadDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/employee")
@@ -83,5 +83,10 @@ public class EmployeeController {
         Employee employee = employeeService.addCareerPathToEmployee(employeeId, careerPathId);
 
         return ResponseEntity.ok(employee);
+    }
+
+    @PostMapping("/addSoftSkillCourse/{employeeId}/{courseId}")
+    public void addSoftSkillCourseToEmployee(@PathVariable Long employeeId, @PathVariable Long courseId) {
+        employeeService.addSoftSkillCourseToEmployee(employeeId, courseId);
     }
 }

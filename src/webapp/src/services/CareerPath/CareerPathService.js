@@ -3,7 +3,7 @@ import axios from "axios";
 const GENERATE_CAREER_PATH = `http://localhost:8081/api/careerPath/careerPath/`;
 const DELETE_CAREER_PATH = `http://localhost:8081/api/careerPath/deleteCareerPath/`;
 const GET_ALL_CAREER_PATH_OPTIONS = `http://localhost:8081/api/careerPath/paths/`;
-const CHOOSE_CAREER_PATH_FOR_EMPLOYEE = `http://localhost:8081/api/employee/addCareerPathToEmployee/`
+const CHOOSE_CAREER_PATH_FOR_EMPLOYEE = `http://localhost:8081/api/assessment/addCareerPathToAssessment/`
 
 
 class CareerPathService{

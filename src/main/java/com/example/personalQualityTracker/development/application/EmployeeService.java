@@ -2,10 +2,10 @@ package com.example.personalQualityTracker.development.application;
 
 import com.example.personalQualityTracker.development.data.SpringEmployeeRepository;
 import com.example.personalQualityTracker.development.data.SpringStreamLeadRepository;
-import com.example.personalQualityTracker.development.domain.CareerPath;
-import com.example.personalQualityTracker.development.domain.Employee;
+import com.example.personalQualityTracker.development.domain.*;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.example.personalQualityTracker.development.domain.Enum.Function;
+import com.example.personalQualityTracker.development.domain.Enum.Interest;
 import com.example.personalQualityTracker.security.application.UserService;
 import com.example.personalQualityTracker.security.data.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -24,14 +26,14 @@ public class EmployeeService {
 
     private final UserService userService;
 
-    private final SpringStreamLeadRepository springStreamLeadRepository;
+    private final SoftSkillCourseService softSkillCourseService;
 
     private final CareerPathService careerPathService;
 
-    public EmployeeService(SpringEmployeeRepository springEmployeeRepository, UserService userService, SpringStreamLeadRepository springStreamLeadRepository, CareerPathService careerPathService) {
+    public EmployeeService(SpringEmployeeRepository springEmployeeRepository, UserService userService, SoftSkillCourseService softSkillCourseService, CareerPathService careerPathService) {
         this.springEmployeeRepository = springEmployeeRepository;
         this.userService = userService;
-        this.springStreamLeadRepository = springStreamLeadRepository;
+        this.softSkillCourseService = softSkillCourseService;
         this.careerPathService = careerPathService;
     }
 
@@ -87,5 +89,11 @@ public class EmployeeService {
         return springEmployeeRepository.save(employee);
     }
 
+    public void addSoftSkillCourseToEmployee(Long employeeId, Long courseId) {
+        Employee employee = getEmployeeById(employeeId);
+
+        employee.addSoftSkillCourse(softSkillCourseService.getSoftSkillCourseById(courseId));
+
+    }
 
 }

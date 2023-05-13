@@ -2,10 +2,14 @@ package com.example.personalQualityTracker.development.presentation;
 
 import com.example.personalQualityTracker.development.application.AssessmentService;
 import com.example.personalQualityTracker.development.domain.Assessment;
+import com.example.personalQualityTracker.development.domain.Employee;
+import com.example.personalQualityTracker.development.domain.SoftSkillCourse;
 import com.example.personalQualityTracker.development.presentation.DTO.AssessmentDTO;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/assessment")
@@ -35,5 +39,17 @@ public class AssessmentController {
     @PostMapping("/percentages/{personId}")
     public Assessment getPersonality(@PathVariable Long personId){
         return assessmentService.getPersonality(personId);
+    }
+
+    @PostMapping("/addCareerPathToAssessment/{employeeId}/{careerPathId}")
+    public ResponseEntity<Assessment> addCareerPathToEmployee(@PathVariable Long employeeId, @PathVariable Long careerPathId) {
+        Assessment assessment = assessmentService.addCareerPathToAssessment(employeeId, careerPathId);
+
+        return ResponseEntity.ok(assessment);
+    }
+
+    @GetMapping("/matchingcourses/{id}")
+    public Map<String, Integer> getMatchingCourses(@PathVariable Long id) {
+        return assessmentService.findMatchingCourses(id);
     }
 }

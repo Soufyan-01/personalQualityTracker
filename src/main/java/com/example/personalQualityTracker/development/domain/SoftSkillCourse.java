@@ -60,4 +60,6 @@ public class SoftSkillCourse implements Serializable {
     public void addCareerPathToSoftSkillCourse(CareerPath careerPath) {
         careerPaths.add(careerPath);
     }
+
+
 }

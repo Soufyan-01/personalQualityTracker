@@ -1,5 +1,6 @@
 package com.example.personalQualityTracker.development.domain;
 
+import com.example.personalQualityTracker.development.application.CareerPathService;
 import com.example.personalQualityTracker.development.domain.Enum.Interest;
 import com.example.personalQualityTracker.development.domain.Enum.question.*;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -61,6 +63,14 @@ public class Assessment {
     @OneToOne
     private Person person;
 
+    @OneToOne
+    private CareerPath careerPath;
+
+    public Assessment(CareerPath careerPath) {
+        this.careerPath = careerPath;
+    }
+
+
     public Assessment(QuestionOne questionOne, QuestionTwo questionTwo, QuestionThree questionThree, QuestionFour questionFour, QuestionFive questionFive, QuestionSix questionSix, QuestionSeven questionSeven, QuestionEight questionEight) {
         this.questionOne = questionOne;
         this.questionTwo = questionTwo;
@@ -90,9 +100,56 @@ public class Assessment {
     }
 
     public Assessment() {
-
     }
 
+    public Map<String, Integer> matchingSoftSkillCourses(Interest interestOne, Interest interestTwo, Interest interestThree,
+                                                                  List<SoftSkillCourse> softSkillCourses, CareerPath careerPath) {
+
+        Map<String, Integer> matchingCourses = new HashMap<>();
+
+        for (SoftSkillCourse softSkillCourse : softSkillCourses) {
+            int matchingPercentage = 0;
+
+            if (careerPath == null || softSkillCourse.getCareerPaths().contains(careerPath)) {
+                List<Interest> interests = softSkillCourse.getInterestList();
+                int numInterests = interests.size();
+
+                for (Interest interest : interests) {
+                    if (interest.equals(interestOne)) {
+                        matchingPercentage += 50;
+                    } else if (interest.equals(interestTwo)) {
+                        matchingPercentage += 30;
+                    } else if (interest.equals(interestThree)) {
+                        matchingPercentage += 20;
+                    }
+                }
+
+                if (matchingPercentage > 0) {
+                    matchingPercentage = (int) Math.round((double) matchingPercentage / numInterests);
+                    matchingCourses.put(softSkillCourse.getCourseName(), matchingPercentage);
+                }
+            }
+        }
+
+        matchingCourses = sortByValue(matchingCourses);
+
+        System.out.println(matchingCourses);
+
+        return matchingCourses;
+    }
+
+    // A helper function to sort the map by value
+    public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
+        return map.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Collections.reverseOrder()))
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new
+                ));
+    }
 
     public InterestPercentage[] determinePersonality(QuestionOne questionOne, QuestionTwo questionTwo, QuestionThree questionThree, QuestionFour questionFour, QuestionFive questionFive, QuestionSix questionSix, QuestionSeven questionSeven, QuestionEight questionEight) {
         int interestOne = 0;
@@ -209,5 +266,10 @@ public class Assessment {
 
     }
 
-
+    @Override
+    public String toString() {
+        return "Assessment{" +
+                "careerPath=" + careerPath.getName() +
+                '}';
+    }
 }

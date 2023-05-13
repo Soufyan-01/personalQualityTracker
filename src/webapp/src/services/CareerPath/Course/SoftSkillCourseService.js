@@ -3,8 +3,9 @@ import axios from "axios";
 const GENERATE_SOFTSKILL_COURSE = `http://localhost:8081/api/softskillcourse/newCourse/`;
 const CONNECT_SOFTSKILLCOURSE_WITH_CAREER_PATH = `http://localhost:8081/api/softskillcourse/finishCourseOption/`;
 const GET_ALL_SOFT_SKILL_COURSES = `http://localhost:8081/api/softskillcourse/allCourses/`;
-const GET_SOFT_SKILL_COURSE_BY_ID = `http://localhost:8081/api/softskillcourse/softskillcourses/`
-
+const GET_SOFT_SKILL_COURSE_BY_ID = `http://localhost:8081/api/softskillcourse/softskillcourses/`;
+const GET_SOFT_SKILL_COURSE_MATCHES = `http://localhost:8081/api/assessment/matchingcourses/`
+//{id}
 
 class SoftSkillCourseService{
 
@@ -24,6 +25,9 @@ class SoftSkillCourseService{
         return axios.get(GET_SOFT_SKILL_COURSE_BY_ID + softSkillCourseId, {headers: {Authorization: 'Bearer ' + localStorage.getItem("auth")}});
     }
 
+    GetSoftSkillCourseMatches(employeeId){
+        return axios.get(GET_SOFT_SKILL_COURSE_MATCHES + employeeId, {headers: {Authorization: 'Bearer ' + localStorage.getItem("auth")}});
+    }
 }
 
 export default new SoftSkillCourseService();
