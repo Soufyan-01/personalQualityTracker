@@ -1,17 +1,12 @@
 package com.example.personalQualityTracker.development.presentation;
 
 import com.example.personalQualityTracker.development.application.SoftSkillCourseService;
-import com.example.personalQualityTracker.development.domain.Employee;
 import com.example.personalQualityTracker.development.domain.SoftSkillCourse;
 import com.example.personalQualityTracker.development.presentation.DTO.SoftSkillCourseDTO;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityNotFoundException;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/softskillcourse")
@@ -44,6 +39,11 @@ public class SoftSkillCourseController {
     @GetMapping("/softskillcourses/{id}")
     public SoftSkillCourse getSoftSkillCourseById(@PathVariable Long id) {
         return softSkillCourseService.getSoftSkillCourseBasedOnId(id);
+    }
+
+    @GetMapping("/softskillcourseByName/{name}")
+    public Long getSoftSkillCourseByName(@PathVariable String name) {
+        return softSkillCourseService.getSoftSkilLCourseByName(name);
     }
 
 

@@ -47,8 +47,9 @@ public class Employee extends Person implements Serializable {
         this.careerPath = careerPath;
     }
 
-    public void addSoftSkillCourse(SoftSkillCourse softSkillCourse) {
+    public Long addSoftSkillCourse(SoftSkillCourse softSkillCourse) {
         softSkillCourses.add(softSkillCourse);
+        return null;
     }
 
 

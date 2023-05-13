@@ -28,7 +28,8 @@
       <tr v-for="(percentage, name) in MatchingCourses" :key="name">
         <td>{{ name }}</td>
         <td>{{ percentage }} %</td>
-        <v-btn  class="addBtn" append-icon="mdi-check-circle" size="small" color="#12ABDB">
+        <v-btn  class="addBtn" append-icon="mdi-check-circle" size="small" color="#12ABDB"
+        @click="addSoftSkillCourseToEmployee(getSoftSkillCourseId(name))">
           Select course
         </v-btn>
       </tr>
@@ -39,12 +40,15 @@
 </template>
 
 <script>
+import UserService from "@/services/user/UserService";
 import SoftSkillCourseService from "@/services/CareerPath/Course/SoftSkillCourseService";
 export default {
   name: "ChooseSoftSkillCourse",
   data() {
     return{
       MatchingCourses: [],
+      softSkillCourseIds: {}
+
     }
   },
   methods: {
@@ -55,12 +59,42 @@ export default {
         SoftSkillCourseService.GetSoftSkillCourseMatches(employeeId)
             .then((response) => {
               this.MatchingCourses = response.data;
-              console.log(this.MatchingCourses)
             })
       } else {
         console.log("Failed to load data in getAllCareerPaths in CareerPath.vue")
       }
     },
+    getSoftSkillCourseId(name) {
+      if (localStorage.getItem('auth') !== null) {
+        SoftSkillCourseService.GetSoftSkillCourseByName(name)
+            .then((response) => {
+              const softSkillCourse = response.data;
+              console.log(softSkillCourse);
+
+              this.addSoftSkillCourseToEmployee(softSkillCourse);
+            })
+            .catch((error) => {
+              console.log(`Error getting soft skill course by name: ${error}`);
+            });
+      } else {
+        console.log("Failed to load data in getAllCareerPaths in CareerPath.vue");
+      }
+    },
+
+
+    addSoftSkillCourseToEmployee(id) {
+      let employeeId = localStorage.getItem("id");
+
+      UserService.AddSoftSkillCourseToEmployee(employeeId, id)
+          .then((response) => {
+            // Optional: Do something with the response if needed
+            console.log(`Added soft skill course with ID ${id} to employee ${employeeId}`);
+          })
+          .catch((error) => {
+            console.log(`Error adding soft skill course with ID ${id} to employee ${employeeId}: ${error}`);
+          });
+    }
+
 
   },
   created() {

@@ -89,10 +89,10 @@ public class EmployeeService {
         return springEmployeeRepository.save(employee);
     }
 
-    public void addSoftSkillCourseToEmployee(Long employeeId, Long courseId) {
+    public Long addSoftSkillCourseToEmployee(Long employeeId, Long courseId) {
         Employee employee = getEmployeeById(employeeId);
 
-        employee.addSoftSkillCourse(softSkillCourseService.getSoftSkillCourseById(courseId));
+        return employee.addSoftSkillCourse(softSkillCourseService.getSoftSkillCourseById(courseId));
 
     }
 

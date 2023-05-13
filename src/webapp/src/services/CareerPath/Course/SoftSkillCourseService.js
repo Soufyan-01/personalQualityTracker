@@ -5,6 +5,8 @@ const CONNECT_SOFTSKILLCOURSE_WITH_CAREER_PATH = `http://localhost:8081/api/soft
 const GET_ALL_SOFT_SKILL_COURSES = `http://localhost:8081/api/softskillcourse/allCourses/`;
 const GET_SOFT_SKILL_COURSE_BY_ID = `http://localhost:8081/api/softskillcourse/softskillcourses/`;
 const GET_SOFT_SKILL_COURSE_MATCHES = `http://localhost:8081/api/assessment/matchingcourses/`
+const GET_SOFT_SKILL_BY_NAME = `http://localhost:8081/api/softskillcourse/softskillcourseByName/`
+
 //{id}
 
 class SoftSkillCourseService{
@@ -27,6 +29,10 @@ class SoftSkillCourseService{
 
     GetSoftSkillCourseMatches(employeeId){
         return axios.get(GET_SOFT_SKILL_COURSE_MATCHES + employeeId, {headers: {Authorization: 'Bearer ' + localStorage.getItem("auth")}});
+    }
+
+    GetSoftSkillCourseByName(name){
+        return axios.get(GET_SOFT_SKILL_BY_NAME + name, {headers: {Authorization: 'Bearer ' + localStorage.getItem("auth")}});
     }
 }
 

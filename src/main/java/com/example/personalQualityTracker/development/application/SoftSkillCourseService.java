@@ -10,6 +10,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -35,6 +36,10 @@ public class SoftSkillCourseService {
 
     public SoftSkillCourse getSoftSkillCourseBasedOnId(Long id) {
         return springSoftSkillCourseRepository.getById(id);
+    }
+
+    public Long getSoftSkilLCourseByName(String name) {
+        return springSoftSkillCourseRepository.findSoftSkillCourseByCourseName(name).get().getId();
     }
 
     public SoftSkillCourse createNewSoftSkill(String courseName, String courseDescription, int courseLevel, List<Interest> interestList){

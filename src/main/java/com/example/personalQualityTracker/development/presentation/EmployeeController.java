@@ -86,7 +86,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/addSoftSkillCourse/{employeeId}/{courseId}")
-    public void addSoftSkillCourseToEmployee(@PathVariable Long employeeId, @PathVariable Long courseId) {
-        employeeService.addSoftSkillCourseToEmployee(employeeId, courseId);
+    public Long addSoftSkillCourseToEmployee(@PathVariable Long employeeId, @PathVariable Long courseId) {
+        return employeeService.addSoftSkillCourseToEmployee(employeeId, courseId);
     }
 }
