@@ -14,8 +14,8 @@
         <v-list>
           <v-list-item
               prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg"
-              title="Sandra Adams"
-              subtitle="sandra_a88@gmailcom"
+              :title="personName"
+              :subtitle="email"
           ></v-list-item>
         </v-list>
 
@@ -72,7 +72,9 @@ export default {
   components: {},
   data: () => ({
     showNavigation: false,
-    id: null
+    id: null,
+    personName: "",
+    email: ""
   }),
   computed: {
     assessmentNotMade() {
@@ -110,6 +112,12 @@ export default {
     getId() {
       this.id = localStorage.getItem('employeeId');
     },
+    getPersonName(){
+      let email = localStorage.getItem("email");
+      let parts = email.split("@");
+      this.personName = parts[0];
+      this.email = email;
+    },
     logOut() {
       localStorage.removeItem("auth");
       localStorage.removeItem("roles");
@@ -123,6 +131,7 @@ export default {
   },
   mounted() {
     this.getId();
+    this.getPersonName();
   }
 }
 </script>

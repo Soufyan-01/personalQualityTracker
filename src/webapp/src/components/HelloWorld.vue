@@ -1,30 +1,19 @@
-<!--<template>-->
-<!--      <v-card>-->
-<!--        <v-card-text>-->
-<!--          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.-->
-<!--        </v-card-text>-->
-<!--        <v-card-actions>-->
-<!--          <v-btn color="primary" block @click="dialog = false">Close Dialog</v-btn>-->
-<!--        </v-card-actions>-->
-<!--      </v-card>-->
-<!--</template>-->
-
 <template>
   <div class="home">
     <div class="header">
-      <h1>Welcome to my Website</h1>
+      <h1>Welcome {{personName}} to my Website</h1>
       <p>Discover new courses and plan your career path</p>
     </div>
     <div class="main">
       <div class="course-list">
         <div class="course">
-          <img class="imageL" style="width: 55%;" :src="logoTwo" alt="assessment">
+          <img class="imageL" style="width: 45%;" :src="logoTwo" alt="assessment">
           <h3>Assessment</h3>
           <p>Before you can use all the functions of the application, you need to finish the assessment</p>
           <a href="#/capgemini/assessment" class="btn">Go to assessment</a>
         </div>
         <div class="course">
-          <img class="imageL" style="width: 55%;" :src="logo" alt="assessmentResults">
+          <img class="imageL" style="width: 60%;" :src="logo" alt="assessmentResults">
           <h3>Assessment results</h3>
           <p>See your assessment results, and select your preferred career path based on out advise</p>
           <a href="#/capgemini/assessment/results" class="btn">Go to my results</a>
@@ -63,6 +52,7 @@ export default {
     logoTwo: pictureTwo,
     logoThree: pictureThree,
     logoFour: pictureFour,
+    personName: "",
 
 
     ecosystem: [
@@ -112,6 +102,17 @@ export default {
       },
     ],
   }),
+  methods: {
+    getPersonName(){
+      let email = localStorage.getItem("email");
+      let parts = email.split("@");
+      this.personName = parts[0];
+    }
+
+  },
+  created() {
+    this.getPersonName();
+  }
 }
 </script>
 

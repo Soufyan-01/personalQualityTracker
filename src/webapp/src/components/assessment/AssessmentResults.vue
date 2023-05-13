@@ -1,5 +1,5 @@
 <template>
-  <h1 class="headerOne">Welcome ... here you can find the results of your assessment</h1>
+  <h1 class="headerOne">Assessment results</h1>
 
   <div class="grid-container">
     <div class="grid-item">
@@ -113,14 +113,12 @@ export default {
 
 
 .headerOne{
-  background-color: rgb(230,231,233);
-  color: rgb(14,160,211);
-  border-radius: 5px;
-  padding: 5px;
-  margin-bottom: 20px;
+  background-color: #0EA0D3;
+  color: #fff;
+  padding: 25px;
   text-align: center;
-  font-family: 'Roboto', sans-serif; /* Change the font family to Roboto */
-
+  height: 100px;
+  margin-bottom: 20px;
 }
 
 
