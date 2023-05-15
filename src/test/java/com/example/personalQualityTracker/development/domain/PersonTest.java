@@ -1,54 +1,50 @@
-//package com.example.personalQualityTracker.development.domain;
-//
-//import com.example.personalQualityTracker.development.domain.Enum.Function;
-//import org.junit.jupiter.api.Test;
-//
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//
-//public class PersonTest {
-//    @Test
-//    void getName() {
-//        Person person = new Person("John", "Doe", Function.EMPLOYEE);
-//        assertEquals("John", person.getName());
-//    }
-//
-//    @Test
-//    void getSurname() {
-//        Person person = new Person("John", "Doe", Function.EMPLOYEE);
-//        assertEquals("Doe", person.getSurname());
-//    }
-//
-//    @Test
-//    void getFuntion() {
-//        Person person = new Person("John", "Doe", Function.EMPLOYEE);
-//        assertEquals(Function.EMPLOYEE, person.getFunction());
-//    }
-//
-//    @Test
-//    void setId() {
-//        Person person = new Person("John", "Doe", Function.EMPLOYEE);
-//        person.setId(1L);
-//        assertEquals(1L, person.getId());
-//    }
-//
-//    @Test
-//    void setName() {
-//        Person person = new Person("John", "Doe", Function.EMPLOYEE);
-//        person.setName("Jane");
-//        assertEquals("Jane", person.getName());
-//    }
-//
-//    @Test
-//    void setSurname() {
-//        Person person = new Person("John", "Doe", Function.STREAM_LEAD);
-//        person.setSurname("Smith");
-//        assertEquals("Smith", person.getSurname());
-//    }
-//
-//    @Test
-//    void setFuntion() {
-//        Person person = new Person("John", "Doe", Function.EMPLOYEE);
-//        person.setFunction(Function.STREAM_LEAD);
-//        assertEquals(Function.STREAM_LEAD, person.getFunction());
-//    }
-//}
+package com.example.personalQualityTracker.development.domain;
+
+import com.example.personalQualityTracker.development.domain.Enum.Function;
+import com.example.personalQualityTracker.development.domain.Enum.Interest;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class PersonTest {
+
+    @Test
+    public void testConstructorAndGetterMethods() {
+        // Create a new Person object
+        Person person = new Person("John", "Doe", "johndoe@example.com", Function.EMPLOYEE);
+
+        // Verify the name
+        assertEquals("John", person.getName());
+
+        // Verify the surname
+        assertEquals("Doe", person.getSurname());
+
+        // Verify the login email
+        assertEquals("johndoe@example.com", person.getLoginEmail());
+
+        // Verify the function
+        assertEquals(Function.EMPLOYEE, person.getFunction());
+    }
+
+
+    @Test
+    public void testInterestAndIdFields() {
+        // Create a new Person object
+        Person person = new Person();
+
+        // Verify the default value of interest is null
+        assertNull(person.getInterest());
+
+        // Verify the default value of id is null
+        assertNull(person.getId());
+
+        // Set values for interest and id
+        Interest interest = ( Interest.CONVENTIONAL);
+        person.setInterest(interest);
+        person.setId(1L);
+
+        // Verify the updated values
+        assertEquals(interest, person.getInterest());
+        assertEquals(1L, person.getId());
+    }
+}

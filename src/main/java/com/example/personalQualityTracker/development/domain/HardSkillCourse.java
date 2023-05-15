@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -35,11 +36,15 @@ public class HardSkillCourse implements Serializable {
             indexes = {})
     private List<CareerPath> careerPaths;
 
+
     public HardSkillCourse(String courseName, String courseDescription, int courseLevel) {
         this.courseName = courseName;
         this.courseDescription = courseDescription;
         this.courseLevel = courseLevel;
+        this.careerPaths = new ArrayList<>();  // Initialize the careerPaths list
     }
+
+
 
     public HardSkillCourse() {
     }
