@@ -22,13 +22,13 @@
           <img class="imageL" style="width: 55%;" :src="logoThree" alt="softSkill">
           <h3>Soft Skill Courses</h3>
           <p>See all the Soft Skill courses that fit your career path based on the assessment</p>
-          <a href="#" class="btn">Go to courses</a>
+          <a href="#/capgemini/chooseCourse" class="btn">Go to courses</a>
         </div>
         <div class="course">
           <img class="imageL" style="width: 30%;" :src="logoFour" alt="hardSkill">
           <h3>Hard Skill Courses</h3>
           <p>See all the Hard Skill courses that fit your career path based on the assessment</p>
-          <a href="#" class="btn">Go to courses</a>
+          <a href="#/capgemini/chooseCourse" class="btn">Go to courses</a>
         </div>
       </div>
     </div>
@@ -104,9 +104,11 @@ export default {
   }),
   methods: {
     getPersonName(){
-      let email = localStorage.getItem("email");
-      let parts = email.split("@");
-      this.personName = parts[0];
+      if (localStorage.getItem('auth') !== null) {
+        let email = localStorage.getItem("email");
+        let parts = email.split("@");
+        this.personName = parts[0];
+      }
     }
 
   },

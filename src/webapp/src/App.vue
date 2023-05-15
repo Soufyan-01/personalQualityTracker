@@ -11,7 +11,7 @@
           expand-on-hover
           rail
       >
-        <v-list>
+        <v-list v-if="(isLoggedIn)">
           <v-list>
               <v-list-item
                   href="http://localhost:8080/#/capgemini/myInformation"
@@ -26,36 +26,25 @@
 
         <v-list density="compact" nav>
 
-<!--          Home page-->
           <v-list-item class="d-flex justify-center"  v-if="(assessmentMade && isLoggedIn)" title="Home" :to="{ path: '/' }"></v-list-item>
 
-<!--          All users for StreamLead-->
           <v-list-item prepend-icon="mdi-account-group-outline" class="d-flex justify-center" v-if="(isLoggedIn && isStreamLead)" title="Users" value="AllUsers" :to="{ path: '/capgemini/allUsers' }"></v-list-item>
 
-<!--          Login-->
           <v-list-item class="d-flex justify-center" v-if="isLoggedOut" title="Login" value="Login" :to="{ path: '/myAccount/auth/login' }"></v-list-item>
 
-<!--          Assessment-->
           <v-list-item prepend-icon="mdi-folder" class="d-flex justify-center" v-if="(isLoggedIn && isEmployee)" title="Assessment" :to="{ path: '/capgemini/assessment' }"></v-list-item>
 
-          <!--          Resluts of assessment for Employee-->
           <v-list-item class="d-flex justify-center"  v-if="(assessmentMade && isLoggedIn && isEmployee)" title="Results" :to="{ path: '/capgemini/assessment/results' }"></v-list-item>
 
-          <!--          CareerPathOption, RIGHT NEED TO BE ADDED-->
-          <v-list-item class="d-flex justify-center"  title="Careerpath" :to="{ path: '/capgemini/careerPathOption' }"></v-list-item>
+          <v-list-item class="d-flex justify-center"  title="Careerpath" v-if="(isLoggedIn && isStreamLead)" :to="{ path: '/capgemini/careerPathOption' }"></v-list-item>
 
-          <!--          CareerPathOption, RIGHT NEED TO BE ADDED IS FOR STREAMLEAD-->
-          <v-list-item class="d-flex justify-center"  title="Soft skill courses" :to="{ path: '/capgemini/softSkillCourse' }"></v-list-item>
+          <v-list-item class="d-flex justify-center"  title="Soft skill courses" v-if="(isLoggedIn && isStreamLead)" :to="{ path: '/capgemini/softSkillCourse' }"></v-list-item>
 
-          <!--          CareerPathOption, RIGHT NEED TO BE ADDED IS FOR STREAMLEAD-->
-          <v-list-item class="d-flex justify-center"  title="Soft skill radar" :to="{ path: '/capgemini/softSkillRadarChart' }"></v-list-item>
+          <v-list-item class="d-flex justify-center"  title="Soft skill radar" v-if="(isLoggedIn && isStreamLead)" :to="{ path: '/capgemini/softSkillRadarChart' }"></v-list-item>
 
-          <!--          CareerPathOption, RIGHT NEED TO BE ADDED IS FOR STREAMLEAD-->
-          <v-list-item class="d-flex justify-center"  title="Select courses" :to="{ path: '/capgemini/chooseCourse' }"></v-list-item>
+          <v-list-item class="d-flex justify-center"  title="Select courses"  v-if="(isLoggedIn && isEmployee && assessmentMade)" :to="{ path: '/capgemini/chooseCourse' }"></v-list-item>
 
-
-          <!--          CareerPathOption, RIGHT NEED TO BE ADDED IS FOR STREAMLEAD-->
-          <v-list-item class="d-flex justify-center"  title="Hard skill courses" :to="{ path: '/capgemini/hardSkillCourse' }"></v-list-item>
+          <v-list-item class="d-flex justify-center"  title="Hard skill courses" v-if="(isLoggedIn && isStreamLead)" :to="{ path: '/capgemini/hardSkillCourse' }"></v-list-item>
 
           <!--          General-->
           <v-list-item class="d-flex justify-center" v-if="isLoggedIn" @click="logOut" title="Logout" :to="{ path: '/' }"></v-list-item>
@@ -117,13 +106,17 @@ export default {
   },
   methods: {
     getId() {
-      this.id = localStorage.getItem('employeeId');
+      if (localStorage.getItem('auth') !== null) {
+        this.id = localStorage.getItem('employeeId');
+      }
     },
     getPersonName(){
-      let email = localStorage.getItem("email");
-      let parts = email.split("@");
-      this.personName = parts[0];
-      this.email = email;
+      if (localStorage.getItem('auth') !== null) {
+        let email = localStorage.getItem("email");
+        let parts = email.split("@");
+        this.personName = parts[0];
+        this.email = email;
+      }
     },
     logOut() {
       localStorage.removeItem("auth");

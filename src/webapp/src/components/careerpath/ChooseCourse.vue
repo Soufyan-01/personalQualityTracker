@@ -120,7 +120,7 @@ export default {
       UserService.AddSoftSkillCourseToEmployee(employeeId, id)
           .then((response) => {
             // Optional: Do something with the response if needed
-            console.log(`Added soft skill course with ID ${id} to employee ${employeeId}`);
+            alert(`Added soft skill course with ID ${id} to employee ${employeeId}`);
           })
           .catch((error) => {
             console.log(`Error adding soft skill course with ID ${id} to employee ${employeeId}: ${error}`);
@@ -166,7 +166,7 @@ export default {
       UserService.AddHardSkillCourseToEmployee(employeeId, id)
           .then((response) => {
             // Optional: Do something with the response if needed
-            console.log(`Added soft skill course with ID ${id} to employee ${employeeId}`);
+            alert(`Added soft skill course with ID ${id} to employee ${employeeId}`);
           })
           .catch((error) => {
             console.log(`Error adding soft skill course with ID ${id} to employee ${employeeId}: ${error}`);
