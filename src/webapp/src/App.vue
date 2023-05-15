@@ -12,11 +12,14 @@
           rail
       >
         <v-list>
-          <v-list-item
-              prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg"
-              :title="personName"
-              :subtitle="email"
-          ></v-list-item>
+          <v-list>
+              <v-list-item
+                  href="http://localhost:8080/#/capgemini/myInformation"
+                  prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg"
+                  :title="personName"
+                  :subtitle="email"
+              ></v-list-item>
+          </v-list>
         </v-list>
 
         <v-divider></v-divider>

@@ -11,6 +11,8 @@ import SoftSkillCourse from "@/components/careerpath/Course/SoftSkillCourse.vue"
 import SoftSkillRadarChart from "@/components/careerpath/Course/SoftSkillRadarChart.vue";
 import HardSkillCourse from "@/components/careerpath/Course/HardSkillCourse.vue";
 import ChooseCourse from "@/components/careerpath/ChooseCourse.vue";
+import MyInformation from "@/components/Employee/MyInformation.vue";
+import SoftSkillRadarEmployee from "@/components/careerpath/Course/SoftSkillRadarEmployee.vue";
 export default createRouter({
     history: createWebHashHistory(),
     routes: [
@@ -68,6 +70,11 @@ export default createRouter({
             path: '/capgemini/chooseCourse',
             name: 'ChooseCourse',
             component: ChooseCourse
+        },
+        {
+            path: '/capgemini/myInformation',
+            name: 'MyInformation',
+            component: MyInformation
         },
     ],
 
