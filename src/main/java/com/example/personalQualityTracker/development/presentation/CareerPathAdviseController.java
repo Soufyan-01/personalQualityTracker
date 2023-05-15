@@ -1,7 +1,6 @@
 package com.example.personalQualityTracker.development.presentation;
 
 import com.example.personalQualityTracker.development.application.CareerPathAdviseService;
-import com.example.personalQualityTracker.development.domain.CareerPath;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

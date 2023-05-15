@@ -2,9 +2,7 @@ package com.example.personalQualityTracker.development.presentation;
 
 import com.example.personalQualityTracker.development.application.HardSkillCourseService;
 import com.example.personalQualityTracker.development.domain.HardSkillCourse;
-import com.example.personalQualityTracker.development.domain.SoftSkillCourse;
 import com.example.personalQualityTracker.development.presentation.DTO.HardSkillCourseDTO;
-import com.example.personalQualityTracker.development.presentation.DTO.SoftSkillCourseDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

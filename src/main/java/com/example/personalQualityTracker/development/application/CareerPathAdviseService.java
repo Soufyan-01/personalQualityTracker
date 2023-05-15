@@ -1,10 +1,8 @@
 package com.example.personalQualityTracker.development.application;
 
-import com.example.personalQualityTracker.development.data.SpringCareerPathAdviseRespository;
 import com.example.personalQualityTracker.development.domain.Assessment;
 import com.example.personalQualityTracker.development.domain.CareerPath;
 import com.example.personalQualityTracker.development.domain.CareerPathAdvise;
-import com.example.personalQualityTracker.development.domain.Employee;
 import com.example.personalQualityTracker.development.domain.Enum.Interest;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +10,6 @@ import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.example.personalQualityTracker.development.domain.Enum.Interest.CONVENTIONAL;
 
 @Service
 @Transactional

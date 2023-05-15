@@ -1,6 +1,5 @@
 package com.example.personalQualityTracker.development.domain;
 
-import com.example.personalQualityTracker.development.application.CareerPathService;
 import com.example.personalQualityTracker.development.domain.Enum.Interest;
 import com.example.personalQualityTracker.development.domain.Enum.question.*;
 import lombok.Getter;

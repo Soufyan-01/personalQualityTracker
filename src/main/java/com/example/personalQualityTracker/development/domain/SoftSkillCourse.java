@@ -28,8 +28,6 @@ public class SoftSkillCourse implements Serializable {
 
     @Column
     private int courseLevel;
-//    @ManyToMany
-//    private List<CareerPath> careerPaths;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "soft_skill_course_career_paths",

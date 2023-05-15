@@ -1,6 +1,5 @@
 package com.example.personalQualityTracker.development.data;
 
-import com.example.personalQualityTracker.development.domain.Employee;
 import com.example.personalQualityTracker.development.domain.SoftSkillCourse;
 import org.springframework.data.jpa.repository.JpaRepository;
 

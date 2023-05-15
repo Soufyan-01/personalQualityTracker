@@ -2,13 +2,8 @@ package com.example.personalQualityTracker.development.application;
 
 import com.example.personalQualityTracker.development.data.SpringHardSkillCourseRepository;
 import com.example.personalQualityTracker.development.domain.CareerPath;
-import com.example.personalQualityTracker.development.domain.Enum.Interest;
 import com.example.personalQualityTracker.development.domain.HardSkillCourse;
-import com.example.personalQualityTracker.development.domain.SoftSkillCourse;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;

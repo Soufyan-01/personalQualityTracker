@@ -1,6 +1,5 @@
 package com.example.personalQualityTracker.development.domain;
 
-import com.example.personalQualityTracker.development.domain.Enum.Interest;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;

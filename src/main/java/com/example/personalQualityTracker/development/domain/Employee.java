@@ -1,21 +1,14 @@
 package com.example.personalQualityTracker.development.domain;
 
 import com.example.personalQualityTracker.development.domain.Enum.Function;
-import com.example.personalQualityTracker.development.domain.Enum.Interest;
-import com.example.personalQualityTracker.development.presentation.DTO.HardSkillCourseDTO;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
-import static java.lang.Math.min;
-import static java.util.Collections.max;
 
 @Getter
 @Setter
@@ -45,10 +38,6 @@ public class Employee extends Person implements Serializable {
     public Employee(String name, String surname, String loginEmail,String email, Function function) {
         super(name, surname, loginEmail, function);
         this.email = email;
-    }
-
-    public Employee(CareerPath careerPath) {
-        this.careerPath = careerPath;
     }
 
     public Long addSoftSkillCourse(SoftSkillCourse softSkillCourse) {

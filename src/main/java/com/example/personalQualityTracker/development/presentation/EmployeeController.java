@@ -1,19 +1,15 @@
 package com.example.personalQualityTracker.development.presentation;
 
-import com.example.personalQualityTracker.development.application.CareerPathService;
 import com.example.personalQualityTracker.development.application.EmployeeService;
 import com.example.personalQualityTracker.development.application.StreamLeadService;
-import com.example.personalQualityTracker.development.data.SpringEmployeeRepository;
 import com.example.personalQualityTracker.development.domain.*;
 import com.example.personalQualityTracker.development.presentation.DTO.EmployeeDTO;
-import com.example.personalQualityTracker.development.presentation.DTO.HardSkillCourseDTO;
 import com.example.personalQualityTracker.development.presentation.DTO.StreamLeadDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/employee")
@@ -24,16 +20,12 @@ public class EmployeeController {
 
     private final StreamLeadService streamLeadService;
 
-    private final SpringEmployeeRepository springEmployeeRepository;
-
-    private final CareerPathService careerPathService;
 
 
-    public EmployeeController(EmployeeService employeeService, StreamLeadService streamLeadService, SpringEmployeeRepository springEmployeeRepository, CareerPathService careerPathService) {
+
+    public EmployeeController(EmployeeService employeeService, StreamLeadService streamLeadService) {
         this.employeeService = employeeService;
         this.streamLeadService = streamLeadService;
-        this.springEmployeeRepository = springEmployeeRepository;
-        this.careerPathService = careerPathService;
     }
 
     @PostMapping("/addEmployee")

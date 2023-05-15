@@ -1,12 +1,8 @@
 package com.example.personalQualityTracker.development.application;
 
 import com.example.personalQualityTracker.development.data.SpringEmployeeRepository;
-import com.example.personalQualityTracker.development.data.SpringStreamLeadRepository;
 import com.example.personalQualityTracker.development.domain.*;
-//import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.example.personalQualityTracker.development.domain.Enum.Function;
-import com.example.personalQualityTracker.development.domain.Enum.Interest;
-import com.example.personalQualityTracker.development.presentation.DTO.HardSkillCourseDTO;
 import com.example.personalQualityTracker.security.application.UserService;
 import com.example.personalQualityTracker.security.data.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,14 +11,11 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @Transactional
 public class EmployeeService {
-//Test
     private final SpringEmployeeRepository springEmployeeRepository;
 
     private final UserService userService;
@@ -60,7 +53,6 @@ public class EmployeeService {
 
     public Employee updateEmployee(Long id, String image, String email) {
         Employee employee = getEmployeeById(id);
-//        employee.setImage(image);
         employee.setEmail(email);
         return springEmployeeRepository.save(employee);
     }

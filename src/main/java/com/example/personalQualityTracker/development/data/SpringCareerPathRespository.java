@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 
 public interface SpringCareerPathRespository extends JpaRepository<CareerPath, Long> {
-    CareerPath findByName(String name);
 
     void deleteByName(String name);
 }

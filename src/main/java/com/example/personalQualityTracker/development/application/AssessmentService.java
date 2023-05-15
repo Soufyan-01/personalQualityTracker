@@ -1,7 +1,6 @@
 package com.example.personalQualityTracker.development.application;
 
 import com.example.personalQualityTracker.development.data.SpringAssessmentRepository;
-import com.example.personalQualityTracker.development.data.SpringEmployeeRepository;
 import com.example.personalQualityTracker.development.domain.*;
 import com.example.personalQualityTracker.development.domain.Enum.Interest;
 import com.example.personalQualityTracker.development.domain.Enum.question.*;

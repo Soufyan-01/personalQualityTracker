@@ -2,7 +2,6 @@ package com.example.personalQualityTracker.development.presentation.DTO;
 
 import com.example.personalQualityTracker.development.domain.Enum.question.*;
 
-import javax.persistence.Column;
 
 public class AssessmentDTO {
 

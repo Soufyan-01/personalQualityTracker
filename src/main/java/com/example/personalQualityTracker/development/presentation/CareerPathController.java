@@ -1,9 +1,7 @@
 package com.example.personalQualityTracker.development.presentation;
 
 import com.example.personalQualityTracker.development.application.CareerPathService;
-import com.example.personalQualityTracker.development.domain.Assessment;
 import com.example.personalQualityTracker.development.domain.CareerPath;
-import com.example.personalQualityTracker.development.presentation.DTO.AssessmentDTO;
 import com.example.personalQualityTracker.development.presentation.DTO.CareerPathDTO;
 import org.springframework.web.bind.annotation.*;
 

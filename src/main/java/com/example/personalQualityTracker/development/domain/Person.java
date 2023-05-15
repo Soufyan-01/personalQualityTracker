@@ -30,7 +30,6 @@ public class Person implements Serializable {
     @Column
     private Function function;
 
-//    Needs to be implemented if needed --> Maybe only by person
     @Column
     private Interest interest;
 
@@ -41,9 +40,6 @@ public class Person implements Serializable {
         this.function = function;
     }
 
-//    public Person(Interest interest) {
-//        this.interest = interest;
-//    }
 
     public Person() {
     }

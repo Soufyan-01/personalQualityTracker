@@ -2,8 +2,6 @@ package com.example.personalQualityTracker.development.presentation;
 
 import com.example.personalQualityTracker.development.application.AssessmentService;
 import com.example.personalQualityTracker.development.domain.Assessment;
-import com.example.personalQualityTracker.development.domain.Employee;
-import com.example.personalQualityTracker.development.domain.SoftSkillCourse;
 import com.example.personalQualityTracker.development.presentation.DTO.AssessmentDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

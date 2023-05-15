@@ -1,8 +1,6 @@
 package com.example.personalQualityTracker.development.application;
 
-import com.example.personalQualityTracker.development.data.SpringEmployeeRepository;
 import com.example.personalQualityTracker.development.data.SpringStreamLeadRepository;
-import com.example.personalQualityTracker.development.domain.Employee;
 import com.example.personalQualityTracker.development.domain.Enum.Function;
 import com.example.personalQualityTracker.development.domain.StreamLead;
 import com.example.personalQualityTracker.security.application.UserService;
@@ -17,13 +15,11 @@ import java.io.IOException;
 @Transactional
 public class StreamLeadService {
 
-    private final SpringEmployeeRepository springEmployeeRepository;
     private final UserService userService;
 
     private final SpringStreamLeadRepository springStreamLeadRepository;
 
-    public StreamLeadService(SpringEmployeeRepository springEmployeeRepository, UserService userService, SpringStreamLeadRepository springStreamLeadRepository) {
-        this.springEmployeeRepository = springEmployeeRepository;
+    public StreamLeadService(UserService userService, SpringStreamLeadRepository springStreamLeadRepository) {
         this.userService = userService;
         this.springStreamLeadRepository = springStreamLeadRepository;
     }
@@ -45,9 +41,9 @@ public class StreamLeadService {
         }
     }
 
-    public StreamLead getStreamLeadById(Long id) {
-        return springStreamLeadRepository.findById(id).get();
-    }
+//    public StreamLead getStreamLeadById(Long id) {
+//        return springStreamLeadRepository.findById(id).get();
+//    }
 
     public StreamLead getStreamLeadIdByEmail(String email) {
         return springStreamLeadRepository.findByEmail(email)
