@@ -141,17 +141,17 @@
 									<limits>
 										<limit>
 											<counter>INSTRUCTION</counter>
-											<value>COVERED-RATIO</value>
+											<value>COVEREDRATIO</value>
 											<minimum>70.00</minimum>
 										</limit>
 										<limit>
 											<counter>BRANCH</counter>
-											<value>COVERED-RATIO</value>
+											<value>COVEREDRATIO</value>
 											<minimum>70.00</minimum>
 										</limit>
 										<limit>
 											<counter>CLASS</counter>
-											<value>MISSED-COUNT</value>
+											<value>MISSEDCOUNT</value>
 											<maximum>0</maximum>
 										</limit>
 									</limits>
