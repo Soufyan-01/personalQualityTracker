@@ -209,6 +209,7 @@ class AssessmentTest {
         Assessment assessment = new Assessment();
         InterestPercentage[] expected = {
                 new InterestPercentage(Interest.SOCIAL.getName(), 31.25),
+
                 new InterestPercentage(Interest.INVESTIGATIVE.getName(), 25.0),
                 new InterestPercentage(Interest.ARTISTIC.getName(), 18.75)
         };
