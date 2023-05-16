@@ -63,6 +63,7 @@ class SoftSkillCourseTest {
         assertEquals(2, course.getCourseLevel());
     }
 
+
     @Test
     public void testCourseSetters() {
         // Create a course
