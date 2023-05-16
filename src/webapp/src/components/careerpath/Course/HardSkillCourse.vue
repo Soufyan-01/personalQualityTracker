@@ -236,7 +236,42 @@ export default {
       }).catch(() => {
         alert("Please make sure u filled in all the fields!")
       })
-    }
+    },
+
+    getSoftSkillById(courseId) {
+      if (localStorage.getItem('auth') !== null) {
+        let count = {
+          REALISTIC: 0,
+          INVESTIGATIVE: 0,
+          ARTISTIC: 0,
+          SOCIAL: 0,
+          ENTERPRISING: 0,
+          CONVENTIONAL: 0
+        };
+
+        HardSkillCourseService.GetHardSkillCourseById(courseId)
+            .then((response) => {
+              this.CoursesSoftSkill = response.data;
+              console.log(response.data.interestList)
+              this.CoursesSoftSkill.interestList.forEach((information) => {
+                if (information === 'REALISTIC') {
+                  count.REALISTIC += 1;
+                } else if (information === 'INVESTIGATIVE') {
+                  count.INVESTIGATIVE += 1;
+                } else if (information === 'ARTISTIC') {
+                  count.ARTISTIC += 1;
+                } else if (information === 'SOCIAL') {
+                  count.SOCIAL += 1;
+                } else if (information === 'ENTERPRISING') {
+                  count.ENTERPRISING += 1;
+                } else if (information === 'CONVENTIONAL') {
+                  count.CONVENTIONAL += 1;
+                }
+              });
+              this.series[0].data = Object.values(count);
+            });
+      }
+    },
 
   },
   created() {

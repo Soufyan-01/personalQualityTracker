@@ -89,7 +89,7 @@ export default {
         description: "",
         interestList: []
       },
-      interestListItems: [{ name: 'Realistic', value: 1 },{ name: 'Investigative', value: 2 },{ name: 'Artistic', value: 3 },{ name: 'Social', value: 4 },{ name: 'Enterprising', value: 5 }, { name: 'Conventional', value: 6 }],
+      interestListItems: [{ name: 'Realistic', value: 0 },{ name: 'Investigative', value: 1 },{ name: 'Artistic', value: 2 },{ name: 'Social', value: 3 },{ name: 'Enterprising', value: 4 }, { name: 'Conventional', value: 5 }],
 
     };
   },

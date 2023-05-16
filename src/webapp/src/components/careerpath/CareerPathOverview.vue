@@ -61,7 +61,7 @@ export default {
           type: 'bar',
           events: {
             click: function (chart, w, e) {
-              // console.log(chart, w, e)
+              console.log(chart, w, e)
             }
           }
         },

@@ -90,13 +90,10 @@
 </template>
 
 <script>
-import UserService from "@/services/user/UserService";
 import VueApexCharts from "vue3-apexcharts";
 import SoftSkillRadarEmployee from "@/components/careerpath/Course/SoftSkillRadarEmployee.vue";
 
 import AssessmentService from "@/services/assessment/AssessmentService";
-import CareerPathOverview from "@/components/careerpath/CareerPathOverview.vue";
-import {it} from "vuetify/locale";
 
 export default {
   name: "MyInformation",

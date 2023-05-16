@@ -50,8 +50,14 @@ public class AssessmentService {
     }
 
     public Assessment getAssessmentByPersonId(Long id) {
-        return springAssessmentRepository.findAssessmentByPersonId(id).get();
+        Optional<Assessment> assessmentOptional = springAssessmentRepository.findAssessmentByPersonId(id);
+        if (assessmentOptional.isPresent()) {
+            return assessmentOptional.get();
+        } else {
+            throw new NoSuchElementException("Assessment not found for person ID: " + id);
+        }
     }
+
 
     public boolean checkIfAssessmentIsMade(Long id){
         Optional<Assessment> assessmentOptional = springAssessmentRepository.findAssessmentByPersonId(id);

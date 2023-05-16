@@ -12,7 +12,6 @@ import SoftSkillRadarChart from "@/components/careerpath/Course/SoftSkillRadarCh
 import HardSkillCourse from "@/components/careerpath/Course/HardSkillCourse.vue";
 import ChooseCourse from "@/components/careerpath/ChooseCourse.vue";
 import MyInformation from "@/components/Employee/MyInformation.vue";
-import SoftSkillRadarEmployee from "@/components/careerpath/Course/SoftSkillRadarEmployee.vue";
 export default createRouter({
     history: createWebHashHistory(),
     routes: [
