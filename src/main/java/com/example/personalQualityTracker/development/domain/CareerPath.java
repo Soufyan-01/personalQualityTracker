@@ -38,4 +38,5 @@ public class CareerPath implements Serializable {
 
     public CareerPath() {
     }
+
 }
