@@ -12,6 +12,8 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -58,8 +60,14 @@ public class EmployeeService {
     }
 
     public Employee getEmployeeById(Long id) {
-        return springEmployeeRepository.findById(id).get();
+        Optional<Employee> employeeOptional = springEmployeeRepository.findById(id);
+        if (employeeOptional.isPresent()) {
+            return employeeOptional.get();
+        } else {
+            throw new NoSuchElementException("Employee not found");
+        }
     }
+
 
     public Employee getEmployeeIdByEmail(String email) {
         return springEmployeeRepository.findByEmail(email)

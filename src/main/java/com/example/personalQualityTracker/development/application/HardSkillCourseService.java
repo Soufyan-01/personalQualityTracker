@@ -9,6 +9,8 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -24,7 +26,12 @@ public class HardSkillCourseService {
     }
 
     public HardSkillCourse getHardSkillCourseById(Long id) {
-        return springHardSkillCourseRepository.findById(id).get();
+        Optional<HardSkillCourse> courseOptional = springHardSkillCourseRepository.findById(id);
+        if (courseOptional.isPresent()) {
+            return courseOptional.get();
+        } else {
+            throw new NoSuchElementException("HardSkillCourse not found");
+        }
     }
 
 
@@ -68,7 +75,13 @@ public class HardSkillCourseService {
     }
 
     public Long getHardSkilLCourseByName(String name) {
-        return springHardSkillCourseRepository.findHardSkillCourseByCourseName(name).get().getId();
+        Optional<HardSkillCourse> courseOptional = springHardSkillCourseRepository.findHardSkillCourseByCourseName(name);
+        if (courseOptional.isPresent()) {
+            return courseOptional.get().getId();
+        } else {
+            throw new NoSuchElementException("HardSkillCourse not found");
+        }
     }
+
 
 }

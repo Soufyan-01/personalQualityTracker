@@ -10,6 +10,8 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -25,8 +27,14 @@ public class SoftSkillCourseService {
     }
 
     public SoftSkillCourse getSoftSkillCourseById(Long id) {
-        return springSoftSkillCourseRepository.findById(id).get();
+        Optional<SoftSkillCourse> courseOptional = springSoftSkillCourseRepository.findById(id);
+        if (courseOptional.isPresent()) {
+            return courseOptional.get();
+        } else {
+            throw new NoSuchElementException("SoftSkillCourse not found");
+        }
     }
+
 
 
     public List<SoftSkillCourse> getAllSoftSkillCourses() {
@@ -38,8 +46,14 @@ public class SoftSkillCourseService {
     }
 
     public Long getSoftSkilLCourseByName(String name) {
-        return springSoftSkillCourseRepository.findSoftSkillCourseByCourseName(name).get().getId();
+        Optional<SoftSkillCourse> courseOptional = springSoftSkillCourseRepository.findSoftSkillCourseByCourseName(name);
+        if (courseOptional.isPresent()) {
+            return courseOptional.get().getId();
+        } else {
+            throw new NoSuchElementException("SoftSkillCourse not found");
+        }
     }
+
 
     public SoftSkillCourse createNewSoftSkill(String courseName, String courseDescription, int courseLevel, List<Interest> interestList){
 
