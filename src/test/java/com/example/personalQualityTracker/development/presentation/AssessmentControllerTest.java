@@ -1,14 +1,11 @@
 package com.example.personalQualityTracker.development.presentation;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import com.example.personalQualityTracker.development.application.AssessmentService;
 import com.example.personalQualityTracker.development.domain.Assessment;
-import com.example.personalQualityTracker.development.domain.Enum.question.QuestionOne;
-import com.example.personalQualityTracker.development.domain.Enum.question.QuestionTwo;
-import com.example.personalQualityTracker.development.presentation.DTO.AssessmentDTO;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -16,7 +13,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,7 +49,6 @@ class AssessmentControllerTest {
     public void checkIfAssessmentIsMade_ReturnsTrue() {
         // Arrange
         Long personId = 1L;
-
         when(assessmentService.checkIfAssessmentIsMade(personId)).thenReturn(true);
 
         // Act
