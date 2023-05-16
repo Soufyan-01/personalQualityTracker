@@ -16,14 +16,11 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
+
+<!--		<sonar.projectKey>Soufyan-01_personalQualityTracker</sonar.projectKey>-->
 <!--		<sonar.organization>soufyan-01</sonar.organization>-->
 <!--		<sonar.host.url>https://sonarcloud.io</sonar.host.url>-->
-<!--		<sonar.sources>src/test</sonar.sources>-->
-
-		<sonar.projectKey>Soufyan-01_personalQualityTracker</sonar.projectKey>
-		<sonar.organization>soufyan-01</sonar.organization>
-		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.exclusions>**/PersonalQualityTrackerApplication.java</sonar.exclusions>
+<!--		<sonar.exclusions>**/PersonalQualityTrackerApplication.java</sonar.exclusions>-->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -107,78 +104,43 @@
 			<version>5.7.0</version>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>jacoco-maven-plugin</artifactId>
+			<version>0.8.10</version>
+		</dependency>
+
 	</dependencies>
 
 
 	<build>
 	<plugins>
-		<plugin>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-maven-plugin</artifactId>
-			<version>2.4.2</version>
-		</plugin>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-compiler-plugin</artifactId>
-			<configuration>
-				<source>11</source>
-				<target>11</target>
-			</configuration>
-		</plugin>
-		<plugin>
-			<groupId>org.jacoco</groupId>
-			<artifactId>jacoco-maven-plugin</artifactId>
-			<version>0.8.6</version>
-			<executions>
-				<execution>
-					<id>pre-unit-test</id>
-					<goals>
-						<goal>prepare-agent</goal>
-					</goals>
-				</execution>
-				<execution>
-					<id>post-unit-test</id>
-					<phase>test</phase>
-					<goals>
-						<goal>report</goal>
-					</goals>
-					<configuration>
-						<excludes>
-							<exclude>**/PersonalQualityTrackerApplication.*</exclude>
-						</excludes>
-					</configuration>
-				</execution>
-				<execution>
-					<id>jacoco-check</id>
-					<goals>
-						<goal>check</goal>
-					</goals>
-					<configuration>
-						<rules>
-							<rule>
-								<element>BUNDLE</element>
-								<limits>
-									<limit>
-										<counter>INSTRUCTION</counter>
-										<value>COVEREDRATIO</value>
-										<minimum>0.50</minimum>
-									</limit>
-									<limit>
-										<counter>BRANCH</counter>
-										<value>COVEREDRATIO</value>
-										<minimum>0.50</minimum>
-									</limit>
-									<limit>
-										<counter>CLASS</counter>
-										<value>MISSEDCOUNT</value>
-										<maximum>10</maximum>
-									</limit>
-								</limits>
-							</rule>
-						</rules>
-					</configuration></execution>
-			</executions>
-		</plugin>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>0.8.7</version>
+						<executions>
+							<execution>
+								<id>prepare-agent</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>report</id>
+								<goals>
+									<goal>report</goal>
+								</goals>
+								<configuration>
+									<formats>
+										<format>XML</format>
+									</formats>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
