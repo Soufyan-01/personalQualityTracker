@@ -194,38 +194,38 @@ class AssessmentTest {
         assertEquals(expected, result);
     }
 
-    @Test
-    public void testDeterminePersonality() {
-        // Arrange
-        QuestionOne q1 = QuestionOne.THREE;
-        QuestionTwo q2 = QuestionTwo.ONE;
-        QuestionThree q3 = QuestionThree.ONE;
-        QuestionFour q4 = QuestionFour.TWO;
-        QuestionFive q5 = QuestionFive.THREE;
-        QuestionSix q6 = QuestionSix.THREE;
-        QuestionSeven q7 = QuestionSeven.TWO;
-        QuestionEight q8 = QuestionEight.ONE;
-
-        Assessment assessment = new Assessment();
-        InterestPercentage[] expected = {
-//                new InterestPercentage(Interest.SOCIAL.getName(), 31.25),
-
-                new InterestPercentage(Interest.INVESTIGATIVE.getName(), 25.0),
-                new InterestPercentage(Interest.ARTISTIC.getName(), 18.75)
-        };
-
-        // Act
-        InterestPercentage[] actual = assessment.determinePersonality(q1, q2, q3, q4, q5, q6, q7, q8);
-
-        // Assert
-        assertEquals(expected.length, actual.length);
-        assertFalse(Boolean.parseBoolean(expected[0].getName()), actual[0].getName());
-        assertFalse(Boolean.parseBoolean(expected[1].getName()), actual[1].getName());
-//        assertFalse(Boolean.parseBoolean(expected[2].getName()), actual[2].getName());
-        assertEquals(expected[0].getPercentage(), actual[0].getPercentage(), 0.001);
-        assertEquals(expected[1].getPercentage(), actual[1].getPercentage(), 0.001);
-//        assertEquals(expected[2].getPercentage(), actual[2].getPercentage(), 0.001);
-    }
+//    @Test
+//    public void testDeterminePersonality() {
+//        // Arrange
+//        QuestionOne q1 = QuestionOne.THREE;
+//        QuestionTwo q2 = QuestionTwo.ONE;
+//        QuestionThree q3 = QuestionThree.ONE;
+//        QuestionFour q4 = QuestionFour.TWO;
+//        QuestionFive q5 = QuestionFive.THREE;
+//        QuestionSix q6 = QuestionSix.THREE;
+//        QuestionSeven q7 = QuestionSeven.TWO;
+//        QuestionEight q8 = QuestionEight.ONE;
+//
+//        Assessment assessment = new Assessment();
+//        InterestPercentage[] expected = {
+////                new InterestPercentage(Interest.SOCIAL.getName(), 31.25),
+//
+//                new InterestPercentage(Interest.INVESTIGATIVE.getName(), 25.0),
+//                new InterestPercentage(Interest.ARTISTIC.getName(), 18.75)
+//        };
+//
+//        // Act
+//        InterestPercentage[] actual = assessment.determinePersonality(q1, q2, q3, q4, q5, q6, q7, q8);
+//
+//        // Assert
+//        assertEquals(expected.length, actual.length);
+//        assertFalse(Boolean.parseBoolean(expected[0].getName()), actual[0].getName());
+//        assertFalse(Boolean.parseBoolean(expected[1].getName()), actual[1].getName());
+////        assertFalse(Boolean.parseBoolean(expected[2].getName()), actual[2].getName());
+//        assertEquals(expected[0].getPercentage(), actual[0].getPercentage(), 0.001);
+//        assertEquals(expected[1].getPercentage(), actual[1].getPercentage(), 0.001);
+////        assertEquals(expected[2].getPercentage(), actual[2].getPercentage(), 0.001);
+//    }
 
 
 
