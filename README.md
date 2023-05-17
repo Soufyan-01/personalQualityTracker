@@ -7,7 +7,6 @@ The Personal Quality Tracker project focuses on assisting young professionals by
 - Assessment: Users can complete assessments that evaluate their current skills and career goals.
 - Career Path Advice: Based on the assessment results, the system generates recommendations for suitable career paths.
 - Skill Development: The project suggests a variety of soft and hard skill courses that align with the chosen career paths.
-- Progress Tracking: Users can track their progress in acquiring new skills and monitor their overall career development.
 
 ## Installation
 To set up the Personal Quality Tracker project locally, follow these steps:
