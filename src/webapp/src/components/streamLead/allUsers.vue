@@ -1,4 +1,6 @@
 <template>
+  <h1 class="headerOne">All stream leads</h1>
+
   <div class="centerTable">
   <v-table>
     <thead>
@@ -92,5 +94,38 @@ export default {
   width: 500px;
   margin-left: 250px;
 }
+
+.headerOne{
+  background-color: #0EA0D3;
+  color: #fff;
+  padding: 25px;
+  text-align: center;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.centerTable {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px;
+}
+
+thead th {
+  background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+
 
 </style>

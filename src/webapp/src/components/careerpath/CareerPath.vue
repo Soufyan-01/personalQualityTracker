@@ -1,6 +1,8 @@
 <template>
+
+  <h1 class="headerOne">All career paths</h1>
+
   <div>
-    <h1 class="headerOne">Welcome ... here you can find the top 3 results of your assessment</h1>
     <div class="grid-container">
       <div class="centerTable">
         <v-table fixed-header height="400px" class="table">
@@ -197,5 +199,15 @@ export default {
 .addBtn{
   margin-top: 20px;
 }
+
+.headerOne{
+  background-color: #0EA0D3;
+  color: #fff;
+  padding: 25px;
+  text-align: center;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
 
 </style>

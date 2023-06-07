@@ -1,5 +1,5 @@
 <template>
-  <h1 class="headerOne">Welcome ... here you can find and add Soft Skill courses</h1>
+  <h1 class="headerOne">All soft skill courses</h1>
 
   <div class="grid-container">
   <div class="table-class">
@@ -462,6 +462,15 @@ tr:hover {
 
 .addBtn{
   margin-top: 20px;
+}
+
+.headerOne{
+  background-color: #0EA0D3;
+  color: #fff;
+  padding: 25px;
+  text-align: center;
+  height: 100px;
+  margin-bottom: 20px;
 }
 
 </style>

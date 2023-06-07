@@ -164,6 +164,7 @@ public class Assessment {
                 ));
     }
 
+
     public InterestPercentage[] determinePersonality(QuestionOne questionOne, QuestionTwo questionTwo, QuestionThree questionThree, QuestionFour questionFour, QuestionFive questionFive, QuestionSix questionSix, QuestionSeven questionSeven, QuestionEight questionEight) {
         int interestOne = 0;
         int interestTwo = 0;
@@ -171,6 +172,9 @@ public class Assessment {
         int interestFour = 0;
         int interestFive = 0;
         int interestSix = 0;
+
+//        Opslipitsen in kleine methodes/ cases
+
 
         if (questionOne.equals(QuestionOne.ONE)) {
             interestOne += 1;
@@ -250,6 +254,32 @@ public class Assessment {
             interestFour += 1;
         }
 
+        if (questionSeven.equals(QuestionSeven.ONE)) {
+            interestOne += 1;
+            interestThree += 1;
+        } else if (questionSeven.equals(QuestionSeven.TWO)) {
+            interestFive += 1;
+            interestSix += 1;
+        } else if (questionSeven.equals(QuestionSeven.THREE)) {
+            interestFour += 1;
+            interestThree += 1;
+        } else {
+            interestFour += 1;
+        }
+
+        if (questionEight.equals(QuestionEight.TWO)) {
+            interestTwo += 1;
+            interestThree += 1;
+        } else if (questionEight.equals(QuestionEight.ONE)) {
+            interestTwo += 1;
+            interestFive += 1;
+        } else if (questionEight.equals(QuestionEight.THREE)) {
+            interestFour += 1;
+            interestSix += 1;
+        } else {
+            interestFour += 1;
+        }
+
         InterestPercentage[] topInterests = new InterestPercentage[3];
         int[] interests = {interestOne, interestTwo, interestThree, interestFour, interestFive, interestSix};
         Set<Integer> usedInterests = new HashSet<>();
@@ -257,6 +287,8 @@ public class Assessment {
         for (int interestCount : interests) {
             totalInterestCount += interestCount;
         }
+
+//        Dit ook opsplitsen
         for (int i = 0; i < 3; i++) {
             int maxInterest = -1;
             double maxInterestPercentage = 0.0;
@@ -285,4 +317,7 @@ public class Assessment {
                 "careerPath=" + careerPath.getName() +
                 '}';
     }
+
+
+//    Bij de course contact persoon
 }
